@@ -106,6 +106,7 @@ public class VistaUser extends javax.swing.JFrame {
     private void createClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClientBtnActionPerformed
         // TODO add your handling code here:
         TableClients tableClients = new TableClients();
+        tableClients.setLocationRelativeTo(null);
         tableClients.setVisible(true);
     }//GEN-LAST:event_createClientBtnActionPerformed
 
