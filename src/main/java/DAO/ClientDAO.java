@@ -19,6 +19,7 @@ public class ClientDAO {
 
     private static final String SQL_SELECT = "Select * from client";
     private static final String SQL_INSERT = "Insert into client(firstName, lastName, email, phone) VALUES (?,?,?,?)";
+    private static final String SQL_SELECT_ID = "Select idClient, firstName, lastName from client where idClient=?";
 
     public ClientDAO() {
 
@@ -81,5 +82,35 @@ public class ClientDAO {
         }
 
         return false;
+    }
+    
+    public Client selectClientById(int idCli) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Client client = null;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ID);
+            stmt.setInt(1, idCli);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int idClient = rs.getInt("idClient");
+                String firstName = rs.getString("firstName");
+                String lastName = rs.getString("lastName");
+                client = new Client(idClient);
+                client.setFirstName(firstName);
+                client.setLastName(lastName);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            close(rs);
+            close(stmt);
+            close(conn);
+        }
+        return client;
     }
 }
