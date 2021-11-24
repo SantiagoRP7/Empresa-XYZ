@@ -128,9 +128,8 @@ public class FormLogin extends javax.swing.JFrame {
         } else if (login) {
             this.dispose();
             VistaUser vu = new VistaUser();
-            //vu.setLocationRelativeTo(null);
+            vu.setLocationRelativeTo(null);
             vu.setVisible(true);
-            //System.out.println("logueado");
         } else {
             JOptionPane.showMessageDialog(null, "Error en el login", "Error", JOptionPane.ERROR_MESSAGE);
         }

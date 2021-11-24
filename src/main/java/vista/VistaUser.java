@@ -30,6 +30,7 @@ public class VistaUser extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         createClientBtn = new javax.swing.JButton();
         productsBtn = new javax.swing.JButton();
+        ordersBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,6 +51,13 @@ public class VistaUser extends javax.swing.JFrame {
             }
         });
 
+        ordersBtn.setText("Pedidos");
+        ordersBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ordersBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -63,7 +71,8 @@ public class VistaUser extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(productsBtn)
-                            .addComponent(createClientBtn))))
+                            .addComponent(createClientBtn)
+                            .addComponent(ordersBtn))))
                 .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -75,7 +84,9 @@ public class VistaUser extends javax.swing.JFrame {
                 .addComponent(createClientBtn)
                 .addGap(32, 32, 32)
                 .addComponent(productsBtn)
-                .addContainerGap(199, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(ordersBtn)
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,8 +112,16 @@ public class VistaUser extends javax.swing.JFrame {
     private void productsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsBtnActionPerformed
         // TODO add your handling code here:
         TableProducts tableProducts = new TableProducts();
+        tableProducts.setLocationRelativeTo(null);
         tableProducts.setVisible(true);
     }//GEN-LAST:event_productsBtnActionPerformed
+
+    private void ordersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersBtnActionPerformed
+        // TODO add your handling code here:
+        FormOrder formOrder = new FormOrder();
+        formOrder.setLocationRelativeTo(null);
+        formOrder.setVisible(true);
+    }//GEN-LAST:event_ordersBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,6 +163,7 @@ public class VistaUser extends javax.swing.JFrame {
     private javax.swing.JButton createClientBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton ordersBtn;
     private javax.swing.JButton productsBtn;
     // End of variables declaration//GEN-END:variables
 }

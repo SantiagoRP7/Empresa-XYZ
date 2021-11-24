@@ -16,17 +16,18 @@ import static DAO.Conexion.*;
  * @author juancamilo
  */
 public class ProductDAO {
-    
+
     private static final String SQL_SELECT = "Select * from product";
     private static final String SQL_INSERT = "Insert into product(name, description, price) VALUES (?,?,?)";
-    
+    private static final String SQL_SELECT_ID = "Select * from product where idProduct=?";
+
     public List<Product> seleccionar() {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         Product product = null;
         List<Product> products = new ArrayList<>();
-        
+
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(SQL_SELECT);
@@ -48,10 +49,10 @@ public class ProductDAO {
             close(stmt);
             close(conn);
         }
-        
+
         return products;
     }
-    
+
     public boolean insertar(Product product) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -75,5 +76,33 @@ public class ProductDAO {
 
         return false;
     }
-    
+
+    public Product selectProductById(int idCli) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Product product = null;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ID);
+            stmt.setInt(1, idCli);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int idProduct = rs.getInt("idProduct");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                double price = rs.getDouble("price");
+                product = new Product(idProduct, name, description, price);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            close(rs);
+            close(stmt);
+            close(conn);
+        }
+        return product;
+    }
 }

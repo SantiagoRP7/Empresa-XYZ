@@ -94,7 +94,7 @@ public class ClientDAO {
             stmt = conn.prepareStatement(SQL_SELECT_ID);
             stmt.setInt(1, idCli);
             rs = stmt.executeQuery();
-
+            
             if (rs.next()) {
                 int idClient = rs.getInt("idClient");
                 String firstName = rs.getString("firstName");

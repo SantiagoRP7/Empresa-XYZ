@@ -61,7 +61,7 @@ public class TableProducts extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(productsTable);
 
-        backMenuBtn.setText("Menu");
+        backMenuBtn.setText("Atrás");
         backMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backMenuBtnActionPerformed(evt);
@@ -146,6 +146,7 @@ public class TableProducts extends javax.swing.JFrame {
     private void createProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProductBtnActionPerformed
         // TODO add your handling code here:
         FormProduct formProduct = new FormProduct();
+        formProduct.setLocationRelativeTo(null);
         formProduct.setVisible(true);
     }//GEN-LAST:event_createProductBtnActionPerformed
 

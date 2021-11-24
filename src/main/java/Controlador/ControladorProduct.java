@@ -35,5 +35,8 @@ public class ControladorProduct {
         return productDao.insertar(product);
     }
     
+    public Product selectProductById(int idPro) {
+        return productDao.selectProductById(idPro);
+    }
     
 }

@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TableClients extends javax.swing.JFrame {
 
-    ControladorClient controladorClient = new ControladorClient();
+    ControladorClient controladorClient;
     DefaultTableModel mdClientsTable;
 
     /**
@@ -22,6 +22,7 @@ public class TableClients extends javax.swing.JFrame {
      */
     public TableClients() {
         initComponents();
+        controladorClient = new ControladorClient();
         String data[][] = {};
         String columnsClientsTable[] = {"Id cliente", "Nombres", "Apellidos", "Correo electronico", "Telefono"};
         mdClientsTable = new DefaultTableModel(data, columnsClientsTable);
@@ -75,7 +76,7 @@ public class TableClients extends javax.swing.JFrame {
             }
         });
 
-        backMenuBtn.setText("Menú");
+        backMenuBtn.setText("Atrás");
         backMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backMenuBtnActionPerformed(evt);
@@ -133,6 +134,7 @@ public class TableClients extends javax.swing.JFrame {
     private void newClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newClientBtnActionPerformed
         // TODO add your handling code here:
         FormClient formClient = new FormClient();
+        formClient.setLocationRelativeTo(null);
         formClient.setVisible(true);
     }//GEN-LAST:event_newClientBtnActionPerformed
 

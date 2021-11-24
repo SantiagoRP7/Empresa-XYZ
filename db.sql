@@ -45,7 +45,8 @@ CREATE TABLE product(
 INSERT INTO product(name, description, price) 
     VALUES
         ('Camisa polo', 'polo color azul', 80000),
-        ('Jean', 'pantalon sin rotos', 100000);
+        ('Jean', 'pantalon sin rotos', 100000),
+        ('Zapatillas nike', 'Zapatillas color azul', 100000);
 
 
 CREATE TABLE orders(
