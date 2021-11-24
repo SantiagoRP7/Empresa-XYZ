@@ -16,14 +16,15 @@ public class Order {
     private int idOrder;
     private Date dateOrder;
     private Client idClient;
-
+    private User worker;
     public Order() {
     }
 
-    public Order(int idOrder, Date dateOrder, Client idClient) {
+    public Order(User worker,int idOrder, Date dateOrder, Client idClient) {
         this.idOrder = idOrder;
         this.dateOrder = dateOrder;
         this.idClient = idClient;
+        this.worker = worker;
     }
 
     public Order(Date dateOrder, Client idClient) {
@@ -50,5 +51,12 @@ public class Order {
     public void setIdClient(Client idClient) {
         this.idClient = idClient;
     }
+    
+    public User getWorker() {
+        return worker;
+    }
 
+    public void setIdClient(User worker) {
+        this.worker = worker;
+    }
 }

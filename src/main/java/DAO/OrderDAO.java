@@ -39,7 +39,8 @@ public class OrderDAO {
                 int idOrder = rs.getInt("idOrder");
                 Date dateOrder = rs.getDate("dateOrder");
                 Client idClient = new Client(rs.getInt("idClient"));
-                order = new Order(idOrder, dateOrder, idClient);
+                User worker = new User(idOrder);
+                order = new Order(worker,idOrder, dateOrder, idClient);
                 orders.add(order);
             }
         } catch (SQLException ex) {
