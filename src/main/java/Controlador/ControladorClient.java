@@ -34,4 +34,8 @@ public class ControladorClient {
         });
         return clientsReturn;
     }
+    
+    public Client selectClientById(int idCli) {
+        return clientDao.selectClientById(idCli);
+    }
 }

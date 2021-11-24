@@ -18,6 +18,10 @@ public class Client {
 
     public Client() {
     }
+    
+    public Client(int idClient) {
+        this.idClient = idClient;
+    }
 
     public Client(int idClient, String firstName, String lastName, String email, String phone) {
         this.idClient = idClient;
@@ -68,6 +72,10 @@ public class Client {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    
+    public String getFullName() {
+        return this.firstName+" "+this.lastName;
     }
 
 }
