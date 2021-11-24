@@ -9,6 +9,7 @@ public class Order {
 	private Client client;
 	private ArrayList<Product> products;
 	private ArrayList<Service> services;
+	private User worker;
 	public Order() {
 		
 	}

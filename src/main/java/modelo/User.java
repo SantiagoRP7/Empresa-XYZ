@@ -13,7 +13,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
-    private String telefono;
+    private String phone;
 
     public User() {
     }
@@ -26,7 +26,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.telefono = telefono;
+        this.phone = telefono;
     }
 
     public User(int idUser, String firstName, String lastName, String password, String telefono) {
@@ -34,7 +34,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
-        this.telefono = telefono;
+        this.phone = telefono;
     }
 
     public int getIdUser() {
@@ -66,11 +66,11 @@ public class User {
     }
 
     public String getTelefono() {
-        return telefono;
+        return phone;
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        this.phone = telefono;
     }
     
     
