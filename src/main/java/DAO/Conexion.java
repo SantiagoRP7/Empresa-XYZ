@@ -24,8 +24,12 @@ public class Conexion {
     
     public static Connection getConnection() {    
         try {
+            Class.forName("org.postgresql.Driver");
             return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
         } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace(System.out);
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
