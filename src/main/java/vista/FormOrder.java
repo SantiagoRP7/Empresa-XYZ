@@ -134,7 +134,7 @@ public class FormOrder extends javax.swing.JFrame {
 
         totalOrderLbl.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
 
-        backBtn.setText("Atrás");
+        backBtn.setText("Cancelar");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -152,8 +152,7 @@ public class FormOrder extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel2)
                         .addComponent(jLabel5)
-                        .addComponent(jLabel6)
-                        .addComponent(backBtn)))
+                        .addComponent(jLabel6)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -186,7 +185,9 @@ public class FormOrder extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(335, 335, 335)
+                        .addGap(226, 226, 226)
+                        .addComponent(backBtn)
+                        .addGap(95, 95, 95)
                         .addComponent(createOrderBtn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -197,9 +198,7 @@ public class FormOrder extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(backBtn))
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -230,7 +229,9 @@ public class FormOrder extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(createOrderBtn)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createOrderBtn)
+                    .addComponent(backBtn))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -324,7 +325,7 @@ public class FormOrder extends javax.swing.JFrame {
                     orderProducts.get(i).setIdOrder(idOrder);
                 }
                 controladorOrderProduct.createOrderProduct(orderProducts);
-                JOptionPane.showMessageDialog(null, "Pedido creada con exito");
+                JOptionPane.showMessageDialog(null, "Pedido creado con exito");
                 mdProductsOrder.setRowCount(0);
                 orderProducts.clear();
                 totalOrderLbl.setText("");

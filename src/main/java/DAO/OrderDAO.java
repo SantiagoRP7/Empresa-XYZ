@@ -20,7 +20,7 @@ import org.postgresql.util.PSQLException;
 public class OrderDAO {
 
     private static String SQL_INSERT = "INSERT INTO orders (idOrder, dateOrder, idClient) VALUES (?, ?, ?)";
-    private static String SQL_SELECT = "SELECT * FROM orders";
+    private static String SQL_SELECT = "SELECT * FROM orders natural join client";
     private static String SQL_SELECT_ID_LAST = "SELECT max(idOrder) FROM orders";
 
     public OrderDAO() {
@@ -41,9 +41,11 @@ public class OrderDAO {
             while (rs.next()) {
                 int idOrder = rs.getInt("idOrder");
                 Date dateOrder = rs.getDate("dateOrder");
-                int idClient = rs.getInt("idClient");
+                Client client = new Client(rs.getInt("idClient"));
+                client.setFirstName(rs.getString("firstName"));
+                client.setLastName(rs.getString("lastName"));
                 User worker = new User(idOrder);
-                order = new Order(worker, idOrder, dateOrder, idClient);
+                order = new Order(worker, idOrder, dateOrder, client);
                 orders.add(order);
             }
         } catch (SQLException ex) {
@@ -67,7 +69,7 @@ public class OrderDAO {
             stmt = conn.prepareStatement(SQL_INSERT);
             stmt.setInt(1, order.getIdOrder());
             stmt.setDate(2, order.getDateOrder());
-            stmt.setInt(3, order.getIdClient());
+            stmt.setInt(3, order.getIdClient().getIdClient());
             registros = stmt.executeUpdate();
             return registros == 1;
         } catch (SQLException ex) {

@@ -26,7 +26,7 @@ public class ControladorOrder {
         List<Order> orders = orderDao.seleccionar();
         List<String[]> ordersReturn = new ArrayList<>();
         orders.forEach( order -> {
-            String cli[] = {String.valueOf(order.getIdOrder()), order.getDateOrder().toString(), String.valueOf(order.getIdClient())};
+            String cli[] = {String.valueOf(order.getIdOrder()), order.getDateOrder().toString(), String.valueOf(order.getIdClient().getIdClient()), String.valueOf(order.getIdClient().getFullName())};
             ordersReturn.add(cli);
         });
         return ordersReturn;
@@ -35,7 +35,7 @@ public class ControladorOrder {
     public boolean createOrder(int idClient, int idOrder) {
         LocalDate todayLocalDate = LocalDate.now( ZoneId.of( "America/Montreal" ) );
         java.sql.Date sqlDate = java.sql.Date.valueOf( todayLocalDate );
-        Order order = new Order(idOrder, sqlDate, idClient);
+        Order order = new Order(idOrder, sqlDate, new Client(idClient));
         return orderDao.insertar(order);
     }
     

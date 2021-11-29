@@ -119,9 +119,12 @@ public class VistaUser extends javax.swing.JFrame {
 
     private void ordersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersBtnActionPerformed
         // TODO add your handling code here:
-        FormOrder formOrder = new FormOrder();
-        formOrder.setLocationRelativeTo(null);
-        formOrder.setVisible(true);
+        TableOrders tableOrders = new TableOrders();
+        tableOrders.setLocationRelativeTo(null);
+        tableOrders.setVisible(true);
+//        FormOrder formOrder = new FormOrder();
+//        formOrder.setLocationRelativeTo(null);
+//        formOrder.setVisible(true);
     }//GEN-LAST:event_ordersBtnActionPerformed
 
     /**

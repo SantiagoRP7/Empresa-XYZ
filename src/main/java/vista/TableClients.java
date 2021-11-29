@@ -179,7 +179,7 @@ public class TableClients extends javax.swing.JFrame {
         });
     }
 
-    public void loadClientsTable() {
+    private void loadClientsTable() {
         mdClientsTable.setRowCount(0); //de esta forma vaciamos la tabla
         List<String[]> clients = controladorClient.selectClients();
         clients.forEach(client -> {

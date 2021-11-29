@@ -46,7 +46,6 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="backBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -91,7 +90,9 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="335" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
+                          <Component id="backBtn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
                           <Component id="createOrderBtn" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -107,10 +108,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="backBtn" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -149,7 +147,10 @@
                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="289" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="createOrderBtn" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="createOrderBtn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="backBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace pref="16" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -265,7 +266,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="backBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Atr&#xe1;s"/>
+            <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
