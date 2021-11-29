@@ -17,7 +17,7 @@ import java.sql.Date;
  * @author juancamilo
  */
 public class OrderDAO {
-    private static String SQL_INSERT = "INSERT INTO orders (dateOrder, idClient) VALUES (?, ?)";
+    private static String SQL_INSERT = "INSERT INTO orders (idOrder, dateOrder, idClient) VALUES (?, ?, ?)";
     private static String SQL_SELECT = "SELECT * FROM orders";
 
     public OrderDAO() {
@@ -38,7 +38,7 @@ public class OrderDAO {
             while (rs.next()) {
                 int idOrder = rs.getInt("idOrder");
                 Date dateOrder = rs.getDate("dateOrder");
-                Client idClient = new Client(rs.getInt("idClient"));
+                int idClient = rs.getInt("idClient");
                 User worker = new User(idOrder);
                 order = new Order(worker,idOrder, dateOrder, idClient);
                 orders.add(order);
@@ -62,8 +62,9 @@ public class OrderDAO {
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setDate(1, order.getDateOrder());
-            stmt.setInt(2, order.getIdClient().getIdClient());
+            stmt.setInt(1, order.getIdOrder());
+            stmt.setDate(2, order.getDateOrder());
+            stmt.setInt(3, order.getIdClient());
             registros = stmt.executeUpdate();
             return registros == 1;
         } catch (SQLException ex) {

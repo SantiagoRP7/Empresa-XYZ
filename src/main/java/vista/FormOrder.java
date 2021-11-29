@@ -6,9 +6,13 @@ package vista;
 
 import javax.swing.table.DefaultTableModel;
 import Controlador.ControladorClient;
+import Controlador.ControladorOrder;
+import Controlador.ControladorOrderProduct;
 import Controlador.ControladorProduct;
+import java.util.*;
 import javax.swing.JOptionPane;
 import modelo.Client;
+import modelo.OrderProduct;
 import modelo.Product;
 
 /**
@@ -21,19 +25,26 @@ public class FormOrder extends javax.swing.JFrame {
     ControladorProduct controladorProduct;
     DefaultTableModel mdProductsOrder;
     double priceTotal;
+    ControladorOrder controladorOrder;
+    ControladorOrderProduct controladorOrderProduct;
+    ArrayList<OrderProduct> orderProducts;
+    
 
     /**
      * Creates new form FormOrder
      */
     public FormOrder() {
         initComponents();
+        controladorOrderProduct = new ControladorOrderProduct();
         controladorClient = new ControladorClient();
         controladorProduct = new ControladorProduct();
+        controladorOrder = new ControladorOrder();
         String data[][] = {};
         String columnsProductsOrder[] = {"Id producto", "Nombre", "Descripcion", "Precio und", "Cantidad", "Precio total"};
         mdProductsOrder = new DefaultTableModel(data, columnsProductsOrder);
         tableCreateOrder.setModel(mdProductsOrder);
         tableCreateOrder.setDefaultEditor(Object.class, null);
+        orderProducts = new ArrayList<>();
     }
 
     /**
@@ -112,6 +123,11 @@ public class FormOrder extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableCreateOrder);
 
         createOrderBtn.setText("Crear");
+        createOrderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createOrderBtnActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jLabel7.setText("Total del pedido:");
@@ -271,6 +287,10 @@ public class FormOrder extends javax.swing.JFrame {
                 double priceT = price * cant;
                 this.priceTotal += priceT;
                 String prod[] = {idProdStr, product.getName(), product.getDescription(), String.valueOf(price), cantStr, String.valueOf(priceT)};
+                OrderProduct temp = new OrderProduct();
+                temp.setIdProduct(idProd);
+                temp.setCantityProduct(cant);
+                orderProducts.add(temp);
                 mdProductsOrder.addRow(prod);
                 totalOrderLbl.setText(String.valueOf(this.priceTotal));
                 idProductTf.setText("");
@@ -289,6 +309,23 @@ public class FormOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void createOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createOrderBtnActionPerformed
+        // TODO add your handling code here:
+        String idClientSTR = idClientLbl.getText(); 
+        if(idClientSTR.length()<0){
+            int idClient = Integer.parseInt(idClientSTR);
+            int idOrder = controladorOrder.createOrder(idClient);
+            String idProduct;
+            int cantityProduct;
+            for (int i = 0; i < orderProducts.size(); i++) {
+                orderProducts.get(i).setIdOrder(idOrder);
+            }
+            controladorOrderProduct.createOrderProduct(orderProducts);
+        }else{
+            JOptionPane.showMessageDialog(null, "Porfavor ingresa el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_createOrderBtnActionPerformed
 
     /**
      * @param args the command line arguments

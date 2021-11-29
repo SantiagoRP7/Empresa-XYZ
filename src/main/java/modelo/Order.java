@@ -14,20 +14,23 @@ import java.sql.Date;
 public class Order {
 
     private int idOrder;
+    private static int countOrder;
     private Date dateOrder;
-    private Client idClient;
+    private int idClient;
     private User worker;
     public Order() {
+        this.idOrder = ++Order.countOrder;
     }
 
-    public Order(User worker,int idOrder, Date dateOrder, Client idClient) {
+    public Order(User worker,int idOrder, Date dateOrder, int idClient) {
         this.idOrder = idOrder;
         this.dateOrder = dateOrder;
         this.idClient = idClient;
         this.worker = worker;
     }
 
-    public Order(Date dateOrder, Client idClient) {
+    public Order(Date dateOrder, int idClient) {
+        this();
         this.dateOrder = dateOrder;
         this.idClient = idClient;
     }
@@ -44,11 +47,11 @@ public class Order {
         this.dateOrder = dateOrder;
     }
 
-    public Client getIdClient() {
+    public int getIdClient() {
         return idClient;
     }
 
-    public void setIdClient(Client idClient) {
+    public void setIdClient(int idClient) {
         this.idClient = idClient;
     }
     

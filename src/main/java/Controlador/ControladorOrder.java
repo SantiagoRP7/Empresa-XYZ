@@ -24,14 +24,17 @@ public class ControladorOrder {
         List<Order> orders = orderDao.seleccionar();
         List<String[]> ordersReturn = new ArrayList<>();
         orders.forEach( order -> {
-            String cli[] = {String.valueOf(order.getIdOrder()), order.getDateOrder().toString(), order.getIdClient().toString()};
+            String cli[] = {String.valueOf(order.getIdOrder()), order.getDateOrder().toString(), String.valueOf(order.getIdClient())};
             ordersReturn.add(cli);
         });
         return ordersReturn;
     }
     
-    public boolean createOrder(Client idClient) {
+    public int createOrder(int idClient) {
         Order order = new Order((java.sql.Date) new Date(), idClient);
-        return orderDao.insertar(order);
+        if(orderDao.insertar(order)){
+            return order.getIdOrder();
+        }
+        return -1;
     }
 }
