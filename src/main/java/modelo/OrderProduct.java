@@ -9,6 +9,7 @@ package modelo;
  * @author ADMIN
  */
 public class OrderProduct {
+
     private int idOrder;
     private int idProduct;
     private int cantityProduct;
@@ -45,4 +46,10 @@ public class OrderProduct {
     public void setCantityProduct(int cantityProduct) {
         this.cantityProduct = cantityProduct;
     }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" + "idOrder=" + idOrder + ", idProduct=" + idProduct + ", cantityProduct=" + cantityProduct + '}';
+    }
+
 }

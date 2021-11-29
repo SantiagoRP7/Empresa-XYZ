@@ -5,6 +5,8 @@
 package Controlador;
 
 import DAO.OrderDAO;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import modelo.Client;
 import modelo.Order;
@@ -30,11 +32,14 @@ public class ControladorOrder {
         return ordersReturn;
     }
     
-    public int createOrder(int idClient) {
-        Order order = new Order((java.sql.Date) new Date(), idClient);
-        if(orderDao.insertar(order)){
-            return order.getIdOrder();
-        }
-        return -1;
+    public boolean createOrder(int idClient, int idOrder) {
+        LocalDate todayLocalDate = LocalDate.now( ZoneId.of( "America/Montreal" ) );
+        java.sql.Date sqlDate = java.sql.Date.valueOf( todayLocalDate );
+        Order order = new Order(idOrder, sqlDate, idClient);
+        return orderDao.insertar(order);
+    }
+    
+    public int getLastOrderId() {
+        return orderDao.lastOrderId();
     }
 }

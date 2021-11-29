@@ -313,17 +313,24 @@ public class FormOrder extends javax.swing.JFrame {
     private void createOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createOrderBtnActionPerformed
         // TODO add your handling code here:
         String idClientSTR = idClientLbl.getText(); 
-        if(idClientSTR.length()<0){
-            int idClient = Integer.parseInt(idClientSTR);
-            int idOrder = controladorOrder.createOrder(idClient);
-            String idProduct;
-            int cantityProduct;
-            for (int i = 0; i < orderProducts.size(); i++) {
-                orderProducts.get(i).setIdOrder(idOrder);
-            }
-            controladorOrderProduct.createOrderProduct(orderProducts);
-        }else{
+        if(idClientSTR.length()==0){
             JOptionPane.showMessageDialog(null, "Porfavor ingresa el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            int idClient = Integer.parseInt(idClientSTR);
+            int idOrder = controladorOrder.getLastOrderId();
+            boolean created = controladorOrder.createOrder(idClient, idOrder);
+            if (created) {
+                for (int i = 0; i < orderProducts.size(); i++) {
+                    orderProducts.get(i).setIdOrder(idOrder);
+                }
+                controladorOrderProduct.createOrderProduct(orderProducts);
+                JOptionPane.showMessageDialog(null, "Pedido creada con exito");
+                mdProductsOrder.setRowCount(0);
+                orderProducts.clear();
+                totalOrderLbl.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al crear el pedido", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_createOrderBtnActionPerformed
 

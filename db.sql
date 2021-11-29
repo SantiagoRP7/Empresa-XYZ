@@ -58,7 +58,7 @@ CREATE TABLE orders(
             references client(idClient)
 );
 
-INSERT INTO orders (dateOrder, idClient) VALUES ('2021-11-24', 1), ('2021-11-24', 2);
+--INSERT INTO orders (dateOrder, idClient) VALUES ('2021-11-24', 1), ('2021-11-24', 2);
 
 --Esta tabla relaciona pedido y producto de forma muchos a muchos
 CREATE TABLE orders_product(
@@ -74,4 +74,4 @@ CREATE TABLE orders_product(
             references product(idProduct)
 );
 
-INSERT INTO orders_product(idOrder,idProduct,cantityProduct) VALUES (1,1,2),(1,2,3),(2,3,4),(2,2,3);
+--INSERT INTO orders_product(idOrder,idProduct,cantityProduct) VALUES (1,1,2),(1,2,3),(2,3,4),(2,2,3);

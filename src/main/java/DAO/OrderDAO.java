@@ -11,18 +11,21 @@ import static DAO.Conexion.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Date;
+import org.postgresql.util.PSQLException;
 
 /**
  *
  * @author juancamilo
  */
 public class OrderDAO {
+
     private static String SQL_INSERT = "INSERT INTO orders (idOrder, dateOrder, idClient) VALUES (?, ?, ?)";
     private static String SQL_SELECT = "SELECT * FROM orders";
+    private static String SQL_SELECT_ID_LAST = "SELECT max(idOrder) FROM orders";
 
     public OrderDAO() {
     }
-    
+
     public List<Order> seleccionar() {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -40,7 +43,7 @@ public class OrderDAO {
                 Date dateOrder = rs.getDate("dateOrder");
                 int idClient = rs.getInt("idClient");
                 User worker = new User(idOrder);
-                order = new Order(worker,idOrder, dateOrder, idClient);
+                order = new Order(worker, idOrder, dateOrder, idClient);
                 orders.add(order);
             }
         } catch (SQLException ex) {
@@ -54,7 +57,7 @@ public class OrderDAO {
 
         return orders;
     }
-    
+
     public boolean insertar(Order order) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -77,5 +80,31 @@ public class OrderDAO {
         }
 
         return false;
+    }
+
+    public int lastOrderId() {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int lastOrderId = 1;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ID_LAST);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                lastOrderId = rs.getInt("max");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            close(rs);
+            close(stmt);
+            close(conn);
+        }
+
+        return lastOrderId+1;
     }
 }

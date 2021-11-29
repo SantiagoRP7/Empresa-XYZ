@@ -23,8 +23,8 @@ import modelo.Product;
  */
 public class OrderProductDAO {
     private static final String SQL_SELECT = "Select * from orders_product";
-    private static final String SQL_INSERT = "Insert into product(idOrder, idProduct, cantityProduct) VALUES (?,?,?)";
-    private static final String SQL_SELECT_ID = "Select * from product where idOrder=?";
+    private static final String SQL_INSERT = "Insert into orders_product(idOrder, idProduct, cantityProduct) VALUES (?,?,?)";
+    private static final String SQL_SELECT_ID = "Select * from orders_product where idOrder=?";
 
     public List<OrderProduct> seleccionar() {
         Connection conn = null;
