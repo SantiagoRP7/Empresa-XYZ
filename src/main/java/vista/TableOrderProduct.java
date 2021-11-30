@@ -9,6 +9,7 @@ import Controlador.ControladorOrder;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Order;
+
 /**
  *
  * @author juancamilo
@@ -18,6 +19,7 @@ public class TableOrderProduct extends javax.swing.JFrame {
     ControladorOrderProduct controladorOrderProduct;
     ControladorOrder controladorOrder;
     DefaultTableModel mdOderProductTable;
+
     /**
      * Creates new form TableOrderProduct
      */
@@ -56,6 +58,8 @@ public class TableOrderProduct extends javax.swing.JFrame {
         idClientLbl = new javax.swing.JLabel();
         nameClientLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        totalPriceOrderLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +90,12 @@ public class TableOrderProduct extends javax.swing.JFrame {
                 backBtnActionPerformed(evt);
             }
         });
+
+        jLabel6.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jLabel6.setText("Total a pagar:");
+
+        totalPriceOrderLbl.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        totalPriceOrderLbl.setText("jLabel7");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,8 +132,12 @@ public class TableOrderProduct extends javax.swing.JFrame {
                                     .addComponent(idClientLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(nameClientLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(326, 326, 326)
-                        .addComponent(backBtn)))
+                        .addGap(105, 105, 105)
+                        .addComponent(backBtn)
+                        .addGap(207, 207, 207)
+                        .addComponent(jLabel6)
+                        .addGap(45, 45, 45)
+                        .addComponent(totalPriceOrderLbl)))
                 .addContainerGap(99, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -141,15 +155,18 @@ public class TableOrderProduct extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(dateOrderLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(nameClientLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nameClientLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(backBtn)
-                .addGap(24, 24, 24))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backBtn)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(totalPriceOrderLbl)))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,12 +191,12 @@ public class TableOrderProduct extends javax.swing.JFrame {
     private void loadOrderProductsTable(int idOrder) {
         mdOderProductTable.setRowCount(0); //de esta forma vaciamos la tabla
         List<String[]> orderProducts = controladorOrderProduct.selectProductsById(idOrder);
-        //setLabels(orderProducts.get(1));
         orderProducts.forEach(orderProduct -> {
             mdOderProductTable.addRow(orderProduct);
         });
+        totalPriceOrder();
     }
-    
+
     private void setLabels(int idOrder) {
         Order order = controladorOrder.selectOrderById(idOrder);
         idOrdenLbl.setText(String.valueOf(order.getIdOrder()));
@@ -187,7 +204,15 @@ public class TableOrderProduct extends javax.swing.JFrame {
         idClientLbl.setText(String.valueOf(order.getIdClient().getIdClient()));
         nameClientLbl.setText(String.valueOf(order.getIdClient().getFullName()));
     }
-    
+
+    private void totalPriceOrder() {
+        double total = 0;
+        for (int i = 0; i < orderProductsTable.getRowCount(); i++) {
+            total+=Double.parseDouble(orderProductsTable.getModel().getValueAt(i, 5).toString());
+        }
+        totalPriceOrderLbl.setText(String.valueOf(total));
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -233,9 +258,11 @@ public class TableOrderProduct extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameClientLbl;
     private javax.swing.JTable orderProductsTable;
+    private javax.swing.JLabel totalPriceOrderLbl;
     // End of variables declaration//GEN-END:variables
 }
