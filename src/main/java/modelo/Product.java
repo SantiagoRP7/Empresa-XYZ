@@ -17,6 +17,10 @@ public class Product {
 
     public Product() {
     }
+    
+    public Product(int idProduct) {
+        this.idProduct = idProduct;
+    }
 
     public Product(int idProduct, String name, String description, double price) {
         this.idProduct = idProduct;

@@ -10,32 +10,32 @@ package modelo;
  */
 public class OrderProduct {
 
-    private int idOrder;
-    private int idProduct;
+    private Order idOrder;
+    private Product idProduct;
     private int cantityProduct;
 
     public OrderProduct() {
     }
 
-    public OrderProduct(int idOrder, int idProduct, int cantityProduct) {
+    public OrderProduct(Order idOrder, Product idProduct, int cantityProduct) {
         this.idOrder = idOrder;
         this.idProduct = idProduct;
         this.cantityProduct = cantityProduct;
     }
 
-    public int getIdOrder() {
+    public Order getIdOrder() {
         return idOrder;
     }
 
-    public void setIdOrder(int idOrder) {
+    public void setIdOrder(Order idOrder) {
         this.idOrder = idOrder;
     }
 
-    public int getIdProduct() {
+    public Product getIdProduct() {
         return idProduct;
     }
 
-    public void setIdProduct(int idProduct) {
+    public void setIdProduct(Product idProduct) {
         this.idProduct = idProduct;
     }
 

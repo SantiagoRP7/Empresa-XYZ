@@ -22,6 +22,7 @@ public class OrderDAO {
     private static String SQL_INSERT = "INSERT INTO orders (idOrder, dateOrder, idClient) VALUES (?, ?, ?)";
     private static String SQL_SELECT = "SELECT * FROM orders natural join client";
     private static String SQL_SELECT_ID_LAST = "SELECT max(idOrder) FROM orders";
+    private static String SQL_SELECT_ID = "SELECT * FROM orders natural join client where idOrder=?";
 
     public OrderDAO() {
     }
@@ -108,5 +109,35 @@ public class OrderDAO {
         }
 
         return lastOrderId+1;
+    }
+    
+    public Order selectOrderById(int idCli) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Order order = null;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_SELECT_ID);
+            stmt.setInt(1, idCli);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int idOrder = rs.getInt("idOrder");
+                Date dateOrder = rs.getDate("dateOrder");
+                Client cli = new Client(rs.getInt("idClient"));
+                cli.setFirstName(rs.getString("firstName"));
+                cli.setLastName(rs.getString("lastName"));
+                order = new Order(idOrder, dateOrder, cli);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            close(rs);
+            close(stmt);
+            close(conn);
+        }
+        return order;
     }
 }

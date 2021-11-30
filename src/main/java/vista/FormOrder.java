@@ -12,6 +12,7 @@ import Controlador.ControladorProduct;
 import java.util.*;
 import javax.swing.JOptionPane;
 import modelo.Client;
+import modelo.Order;
 import modelo.OrderProduct;
 import modelo.Product;
 
@@ -185,9 +186,9 @@ public class FormOrder extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(226, 226, 226)
+                        .addGap(171, 171, 171)
                         .addComponent(backBtn)
-                        .addGap(95, 95, 95)
+                        .addGap(194, 194, 194)
                         .addComponent(createOrderBtn))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -230,8 +231,8 @@ public class FormOrder extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(createOrderBtn)
-                    .addComponent(backBtn))
+                    .addComponent(backBtn)
+                    .addComponent(createOrderBtn))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -289,7 +290,7 @@ public class FormOrder extends javax.swing.JFrame {
                 this.priceTotal += priceT;
                 String prod[] = {idProdStr, product.getName(), product.getDescription(), String.valueOf(price), cantStr, String.valueOf(priceT)};
                 OrderProduct temp = new OrderProduct();
-                temp.setIdProduct(idProd);
+                temp.setIdProduct(new Product(idProd));
                 temp.setCantityProduct(cant);
                 orderProducts.add(temp);
                 mdProductsOrder.addRow(prod);
@@ -322,7 +323,7 @@ public class FormOrder extends javax.swing.JFrame {
             boolean created = controladorOrder.createOrder(idClient, idOrder);
             if (created) {
                 for (int i = 0; i < orderProducts.size(); i++) {
-                    orderProducts.get(i).setIdOrder(idOrder);
+                    orderProducts.get(i).setIdOrder(new Order(idOrder));
                 }
                 controladorOrderProduct.createOrderProduct(orderProducts);
                 JOptionPane.showMessageDialog(null, "Pedido creado con exito");

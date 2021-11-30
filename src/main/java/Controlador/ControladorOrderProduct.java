@@ -36,4 +36,15 @@ public class ControladorOrderProduct {
         }
         return -1;
     }
+    
+    public List<String[]> selectProductsById(int idOP) {
+        List<OrderProduct> products = orderProductDao.selectOrderProductsById(idOP);
+        List<String[]> productsReturn = new ArrayList<>();
+        
+        products.forEach(product -> {
+            String pro[] = {String.valueOf(product.getIdProduct().getIdProduct()), product.getIdProduct().getName(),product.getIdProduct().getDescription(), String.valueOf(product.getIdProduct().getPrice()), String.valueOf(product.getCantityProduct())};
+            productsReturn.add(pro);
+        });
+        return productsReturn;
+    }
 }

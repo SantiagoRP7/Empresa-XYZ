@@ -42,4 +42,8 @@ public class ControladorOrder {
     public int getLastOrderId() {
         return orderDao.lastOrderId();
     }
+    
+    public Order selectOrderById(int id){
+        return orderDao.selectOrderById(id);
+    }
 }

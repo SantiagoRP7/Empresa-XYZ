@@ -21,6 +21,10 @@ public class Order {
     public Order() {
         
     }
+    
+    public Order(int idOrder) {
+        this.idOrder = idOrder;
+    }
 
     public Order(User worker, int idOrder, Date dateOrder, Client idClient) {
         this.idOrder = idOrder;

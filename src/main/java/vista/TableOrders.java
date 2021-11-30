@@ -8,6 +8,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import Controlador.ControladorOrder;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +18,7 @@ public class TableOrders extends javax.swing.JFrame {
 
     ControladorOrder controladorOrder;
     DefaultTableModel mdOrdersTable;
+
     /**
      * Creates new form TableOrders
      */
@@ -47,6 +49,7 @@ public class TableOrders extends javax.swing.JFrame {
         loadOrdersBtn = new javax.swing.JButton();
         createOrderBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        consultProductOrderBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,6 +87,13 @@ public class TableOrders extends javax.swing.JFrame {
             }
         });
 
+        consultProductOrderBtn.setText("Consultar");
+        consultProductOrderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultProductOrderBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -96,13 +106,15 @@ public class TableOrders extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(backBtn)
-                        .addGap(162, 162, 162)
+                        .addGap(176, 176, 176)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(loadOrdersBtn)
-                        .addGap(206, 206, 206)
-                        .addComponent(createOrderBtn)))
+                        .addGap(82, 82, 82)
+                        .addComponent(createOrderBtn)
+                        .addGap(81, 81, 81)
+                        .addComponent(consultProductOrderBtn)))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,17 +122,19 @@ public class TableOrders extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(backBtn)))
-                .addGap(28, 28, 28)
+                        .addComponent(backBtn)
+                        .addGap(42, 42, 42))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(30, 30, 30)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loadOrdersBtn)
-                    .addComponent(createOrderBtn))
+                    .addComponent(createOrderBtn)
+                    .addComponent(consultProductOrderBtn))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -158,6 +172,21 @@ public class TableOrders extends javax.swing.JFrame {
         formOrder.setLocationRelativeTo(null);
         formOrder.setVisible(true);
     }//GEN-LAST:event_createOrderBtnActionPerformed
+
+    private void consultProductOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultProductOrderBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+            int selected = tableOrders.getSelectedRow();
+            String idOrderStr = tableOrders.getModel().getValueAt(selected, 0).toString();
+            int idOrder = Integer.parseInt(idOrderStr);
+            TableOrderProduct tableOrderProduct = new TableOrderProduct(idOrder);
+            tableOrderProduct.setLocationRelativeTo(null);
+            tableOrderProduct.setVisible(true);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un pedido de la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_consultProductOrderBtnActionPerformed
 
     private void loadOrders() {
         mdOrdersTable.setRowCount(0);
@@ -202,6 +231,7 @@ public class TableOrders extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton consultProductOrderBtn;
     private javax.swing.JButton createOrderBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
