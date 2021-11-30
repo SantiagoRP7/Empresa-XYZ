@@ -38,4 +38,8 @@ public class ControladorClient {
     public Client selectClientById(int idCli) {
         return clientDao.selectClientById(idCli);
     }
+    
+    public void updateClient(){
+            System.out.println("modificado");
+    }
 }
