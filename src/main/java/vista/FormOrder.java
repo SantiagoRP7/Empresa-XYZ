@@ -15,6 +15,7 @@ import modelo.Client;
 import modelo.Order;
 import modelo.OrderProduct;
 import modelo.Product;
+import reports.ReportPDF;
 
 /**
  *
@@ -338,6 +339,8 @@ public class FormOrder extends javax.swing.JFrame {
                 }
                 controladorOrderProduct.createOrderProduct(orderProducts);
                 JOptionPane.showMessageDialog(null, "Pedido creado con exito");
+                ReportPDF report = new ReportPDF();
+                report.generatePDF(idOrder);
                 mdProductsOrder.setRowCount(0);
                 orderProducts.clear();
                 totalOrderLbl.setText("");
