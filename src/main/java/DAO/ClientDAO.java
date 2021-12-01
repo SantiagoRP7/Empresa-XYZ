@@ -20,10 +20,11 @@ public class ClientDAO {
     private static final String SQL_SELECT = "Select * from client";
     private static final String SQL_INSERT = "Insert into client(firstName, lastName, email, phone) VALUES (?,?,?,?)";
     private static final String SQL_SELECT_ID = "Select idClient, firstName, lastName from client where idClient=?";
-
+    private static final String SQL_DELETE="DELETE from client WHERE idcliente='";
     public ClientDAO() {
 
     }
+    
 
     public List<Client> seleccionar() {
         Connection conn = null;

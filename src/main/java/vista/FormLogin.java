@@ -4,6 +4,7 @@
  */
 package vista;
 
+import Controlador.ControladorEncode;
 import Controlador.ControladorUser;
 import javax.swing.JOptionPane;
 
@@ -39,6 +40,7 @@ public class FormLogin extends javax.swing.JFrame {
         passwordTf = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
+        registroButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +64,13 @@ public class FormLogin extends javax.swing.JFrame {
             }
         });
 
+        registroButton.setText("Registro");
+        registroButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -70,19 +79,22 @@ public class FormLogin extends javax.swing.JFrame {
                 .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(passwordTf)
-                            .addComponent(usernameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jLabel4))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(loginButton)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGap(75, 75, 75)
+                            .addComponent(loginButton)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(registroButton))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3))
+                            .addGap(43, 43, 43)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(passwordTf)
+                                .addComponent(usernameTf, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(113, 113, 113))
         );
         jPanel2Layout.setVerticalGroup(
@@ -99,7 +111,9 @@ public class FormLogin extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(passwordTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(43, 43, 43)
-                .addComponent(loginButton)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loginButton)
+                    .addComponent(registroButton))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
@@ -120,7 +134,8 @@ public class FormLogin extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
         String username = usernameTf.getText();
-        String password = passwordTf.getText();
+        ControladorEncode codificador= new ControladorEncode();
+        String password = codificador.codificar(passwordTf.getText());
         boolean login = controladorUser.login(username, password);
 
         if (username.length() == 0 || password.length() == 0){
@@ -139,6 +154,12 @@ public class FormLogin extends javax.swing.JFrame {
     private void usernameTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameTfActionPerformed
+
+    private void registroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroButtonActionPerformed
+        setVisible(false);
+        FormRegister ventanaRegistro= new FormRegister();
+        ventanaRegistro.setVisible(true);
+    }//GEN-LAST:event_registroButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,6 +203,7 @@ public class FormLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordTf;
+    private javax.swing.JButton registroButton;
     private javax.swing.JTextField usernameTf;
     // End of variables declaration//GEN-END:variables
 }

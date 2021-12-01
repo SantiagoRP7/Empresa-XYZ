@@ -5,6 +5,7 @@
 package Controlador;
 
 import DAO.*;
+import modelo.User;
 
 /**
  *
@@ -20,6 +21,15 @@ public class ControladorUser {
 
     public boolean login(String username, String password) {
         return userDao.login(username, password);
+    }
+    
+    public boolean usuarioExistente(String userName){
+         
+        return userDao.comprobarUserName(userName);
+    }
+    
+    public boolean registrarUsuario(User user){
+        return userDao.registrarUsuario(user);
     }
 
 }
