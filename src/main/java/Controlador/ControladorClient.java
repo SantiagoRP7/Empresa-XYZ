@@ -21,6 +21,7 @@ public class ControladorClient {
     }
     
     public boolean createClient(String firstName, String lastName, String email, String phone) {
+        
         Client client = new Client(firstName, lastName, email, phone);
         return clientDao.insertar(client);
     }
