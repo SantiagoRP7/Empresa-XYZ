@@ -6,6 +6,7 @@
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/Controlador/ControladorOrderProduct.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/vista/TableClients.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/DAO/OrderDAO.java
+/home/juancamilo/NetBeansProjects/XYZ/src/main/java/Controlador/ControladorEncode.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/modelo/Client.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/vista/FormLogin.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/vista/FormOrder.java
@@ -16,6 +17,7 @@
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/DAO/Conexion.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/DAO/ProductDAO.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/DAO/OrderProductDAO.java
+/home/juancamilo/NetBeansProjects/XYZ/src/main/java/vista/FormRegister.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/Controlador/ControladorUser.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/vista/VistaUser.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/Controlador/ControladorClient.java
@@ -25,3 +27,4 @@
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/Controlador/ControladorProduct.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/modelo/Service.java
 /home/juancamilo/NetBeansProjects/XYZ/src/main/java/DAO/UserDAO.java
+/home/juancamilo/NetBeansProjects/XYZ/src/main/java/reports/ReportPDF.java
