@@ -34,6 +34,9 @@ public class TableOrderProduct extends javax.swing.JFrame {
         orderProductsTable.setDefaultEditor(Object.class, null);
         loadOrderProductsTable(idOrder);
         setLabels(idOrder);
+        //inocente comentario de prueba
+        System.out.println("inocente prueba");
+        System.out.println("prueba inocente");
     }
 
     /**
