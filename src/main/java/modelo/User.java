@@ -10,6 +10,7 @@ package modelo;
  */
 public class User {
     private int idUser;
+    private String userName;
     private String firstName;
     private String lastName;
     private String password;
@@ -36,6 +37,24 @@ public class User {
         this.password = password;
         this.phone = telefono;
     }
+
+    public User(String userName, String firstName, String lastName, String password, String phone) {
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.phone = phone;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    
+    
 
     public int getIdUser() {
         return idUser;

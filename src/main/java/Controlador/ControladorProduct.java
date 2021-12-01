@@ -20,6 +20,12 @@ public class ControladorProduct {
         productDao = new ProductDAO();
     }
     
+    public boolean Modificar(int idproduct, String name, String description, double price){
+      Product product = new Product (idproduct, name, description, price);
+         return productDao.Modificar(product);
+     }
+    
+    
     public List<String[]> selectProducts() {
         List<Product> products = productDao.seleccionar();
         List<String[]> productsReturn = new ArrayList<>();

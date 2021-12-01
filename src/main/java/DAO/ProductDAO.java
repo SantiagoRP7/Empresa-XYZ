@@ -20,6 +20,31 @@ public class ProductDAO {
     private static final String SQL_SELECT = "Select * from product";
     private static final String SQL_INSERT = "Insert into product(name, description, price) VALUES (?,?,?)";
     private static final String SQL_SELECT_ID = "Select * from product where idProduct=?";
+     private static final String SQL_MODIFY = "update product set name=?, description=?, price=? where idproduct=?";
+     
+       public boolean Modificar(Product product) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int registros = 0;
+        try {
+            conn = getConnection();
+            stmt = conn.prepareStatement(SQL_MODIFY);   
+            stmt.setString(1, product.getName());
+            stmt.setString(2, product.getDescription());
+            stmt.setDouble(3, product.getPrice());
+            stmt.setInt(4, product.getIdProduct());
+            registros = stmt.executeUpdate();
+            
+
+        } catch (Exception e) {
+            
+        } finally {
+            close(stmt);
+            close(conn);
+        }return registros == 1 ;
+        
+    }
+    
 
     public List<Product> seleccionar() {
         Connection conn = null;

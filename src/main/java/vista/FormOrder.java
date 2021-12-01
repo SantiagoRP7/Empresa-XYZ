@@ -15,6 +15,7 @@ import modelo.Client;
 import modelo.Order;
 import modelo.OrderProduct;
 import modelo.Product;
+import reports.ReportPDF;
 
 /**
  *
@@ -77,6 +78,7 @@ public class FormOrder extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         totalOrderLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
+        btnEliminarprodpedido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -142,6 +144,13 @@ public class FormOrder extends javax.swing.JFrame {
             }
         });
 
+        btnEliminarprodpedido.setText("Eliminar");
+        btnEliminarprodpedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarprodpedidoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -184,16 +193,17 @@ public class FormOrder extends javax.swing.JFrame {
                         .addComponent(totalOrderLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(backBtn)
-                        .addGap(194, 194, 194)
-                        .addComponent(createOrderBtn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 23, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(171, 171, 171)
+                .addComponent(backBtn)
+                .addGap(194, 194, 194)
+                .addComponent(createOrderBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEliminarprodpedido)
+                .addGap(82, 82, 82))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,7 +242,8 @@ public class FormOrder extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
-                    .addComponent(createOrderBtn))
+                    .addComponent(createOrderBtn)
+                    .addComponent(btnEliminarprodpedido))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -293,6 +304,7 @@ public class FormOrder extends javax.swing.JFrame {
                 temp.setIdProduct(new Product(idProd));
                 temp.setCantityProduct(cant);
                 orderProducts.add(temp);
+                
                 mdProductsOrder.addRow(prod);
                 totalOrderLbl.setText(String.valueOf(this.priceTotal));
                 idProductTf.setText("");
@@ -327,6 +339,8 @@ public class FormOrder extends javax.swing.JFrame {
                 }
                 controladorOrderProduct.createOrderProduct(orderProducts);
                 JOptionPane.showMessageDialog(null, "Pedido creado con exito");
+                ReportPDF report = new ReportPDF();
+                report.generatePDF(idOrder);
                 mdProductsOrder.setRowCount(0);
                 orderProducts.clear();
                 totalOrderLbl.setText("");
@@ -335,6 +349,36 @@ public class FormOrder extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_createOrderBtnActionPerformed
+
+    private void btnEliminarprodpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarprodpedidoActionPerformed
+        // TODO add your handling code here:
+        try {
+            int selected = tableCreateOrder.getSelectedRow();          
+            tableCreateOrder.getModel();
+            String CantStr = tableCreateOrder.getModel().getValueAt(selected, 5).toString();
+            mdProductsOrder.removeRow(tableCreateOrder.getSelectedRow());
+            
+            //String idOrderStr = tableCreateOrder.getModel().getValueAt(selected, 0).toString();
+            //String CantStr = tableCreateOrder.getModel().getValueAt(selected, 4).toString();
+            //String CantStr = tableCreateOrder.getModel().getValueAt(selected, 5).toString();
+            //int idOrder = Integer.parseInt(idOrderStr);
+            //int cant = Integer.parseInt(CantStr);
+            double precio_subs = Double.parseDouble(CantStr);
+            //Product product = controladorProduct.selectProductById(idOrder);
+            //double priceAct = product.getPrice();
+            //double priceTact = priceAct * cant;
+
+            this.priceTotal -= precio_subs;
+
+            totalOrderLbl.setText(String.valueOf(priceTotal));
+            
+            orderProducts.remove(selected);
+            
+           
+        } catch (Exception e) {  //ArrayIndexOutOfBoundsException e
+            //JOptionPane.showMessageDialog(null, "Debe seleccionar un pedido de la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarprodpedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,6 +418,7 @@ public class FormOrder extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProductBtn;
     private javax.swing.JButton backBtn;
+    public javax.swing.JButton btnEliminarprodpedido;
     private javax.swing.JTextField cantityProductTf;
     private javax.swing.JButton createOrderBtn;
     private javax.swing.JLabel idClientLbl;
