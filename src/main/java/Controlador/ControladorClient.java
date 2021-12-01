@@ -24,6 +24,16 @@ public class ControladorClient {
         Client client = new Client(firstName, lastName, email, phone);
         return clientDao.insertar(client);
     }
+    public boolean eliminar (int idclient) {
+    return clientDao.eliminar(idclient);
+    
+    }
+    
+     public boolean Modificar(int idclient, String firstName, String lastName, String email, String phone){
+      Client client = new Client(idclient, firstName, lastName, email, phone);
+         return clientDao.Modificar(client);
+     }
+    
     
     public List<String[]> selectClients() {
         List<Client> clients = clientDao.seleccionar();

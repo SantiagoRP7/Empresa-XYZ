@@ -6,6 +6,7 @@ package vista;
 
 import Controlador.ControladorClient;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -43,9 +44,21 @@ public class TableClients extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientsTable = new javax.swing.JTable();
-        loadTableBtn = new javax.swing.JButton();
-        newClientBtn = new javax.swing.JButton();
         backMenuBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        firstNameTf = new javax.swing.JTextField();
+        lastNameTf = new javax.swing.JTextField();
+        emailTf = new javax.swing.JTextField();
+        phoneTf = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnModificar = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        txtidCliente = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        createClientBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,24 +75,50 @@ public class TableClients extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(clientsTable);
 
-        loadTableBtn.setText("Cargar");
-        loadTableBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadTableBtnActionPerformed(evt);
-            }
-        });
-
-        newClientBtn.setText("Crear");
-        newClientBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newClientBtnActionPerformed(evt);
-            }
-        });
-
         backMenuBtn.setText("Atrás");
         backMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backMenuBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Telefono:");
+
+        jLabel2.setText("Nombres:");
+
+        jLabel3.setText("Apellidos:");
+
+        jLabel6.setText("Email:");
+
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
+        txtidCliente.setEditable(false);
+
+        jLabel7.setText("Id Cliente");
+
+        createClientBtn.setText("Crear");
+        createClientBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createClientBtnActionPerformed(evt);
             }
         });
 
@@ -88,60 +127,178 @@ public class TableClients extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(backMenuBtn)
+                .addGap(246, 246, 246)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(backMenuBtn)
-                        .addGap(138, 138, 138)
-                        .addComponent(jLabel1))
+                        .addGap(93, 93, 93)
+                        .addComponent(createClientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(84, 84, 84)
+                        .addComponent(btnModificar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(loadTableBtn)
-                        .addGap(170, 170, 170)
-                        .addComponent(newClientBtn)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                        .addGap(0, 0, 0)
+                        .addComponent(btnConsultar)
+                        .addGap(70, 70, 70)
+                        .addComponent(btnEliminar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtidCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(151, 151, 151)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(emailTf, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                                        .addComponent(lastNameTf)
+                                        .addComponent(phoneTf))
+                                    .addComponent(firstNameTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(70, 70, 70))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel1))
+                        .addGap(82, 82, 82)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtidCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(firstNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(lastNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(emailTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(phoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(backMenuBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backMenuBtn)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loadTableBtn)
-                    .addComponent(newClientBtn))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(btnModificar)
+                    .addComponent(btnConsultar)
+                    .addComponent(btnEliminar)
+                    .addComponent(createClientBtn))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loadTableBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadTableBtnActionPerformed
-        // TODO add your handling code here:
-        this.loadClientsTable();
-    }//GEN-LAST:event_loadTableBtnActionPerformed
-
-    private void newClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newClientBtnActionPerformed
-        // TODO add your handling code here:
-        FormClient formClient = new FormClient();
-        formClient.setLocationRelativeTo(null);
-        formClient.setVisible(true);
-    }//GEN-LAST:event_newClientBtnActionPerformed
-
     private void backMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMenuBtnActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_backMenuBtnActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            String idclient = txtidCliente.getText();
+            int idcliente = Integer.parseInt(idclient);
+            controladorClient.Modificar(idcliente, firstNameTf.getText(), lastNameTf.getText(), emailTf.getText(), phoneTf.getText());
+            loadClientsTable();
+            txtidCliente.setText("");
+            firstNameTf.setText("");
+            lastNameTf.setText("");
+            emailTf.setText("");
+            phoneTf.setText("");
+            JOptionPane.showMessageDialog(null, "El producto se modificó", "Exito", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error modificar" + e, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            int selected = clientsTable.getSelectedRow();
+            String idOrderStr = clientsTable.getModel().getValueAt(selected, 0).toString();
+            int idOrder = Integer.parseInt(idOrderStr);
+            txtidCliente.setText(idOrderStr);
+            firstNameTf.setText(clientsTable.getModel().getValueAt(selected, 1).toString());
+            lastNameTf.setText(clientsTable.getModel().getValueAt(selected, 2).toString());
+            emailTf.setText(clientsTable.getModel().getValueAt(selected, 3).toString());
+            phoneTf.setText(clientsTable.getModel().getValueAt(selected, 4).toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        try {
+            String idclient = txtidCliente.getText();
+            int idcliente = Integer.parseInt(idclient);
+            controladorClient.eliminar(idcliente);
+            txtidCliente.setText("");
+            firstNameTf.setText("");
+            lastNameTf.setText("");
+            emailTf.setText("");
+            phoneTf.setText("");
+            loadClientsTable();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Debe consultar un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void createClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClientBtnActionPerformed
+        // TODO add your handling code here:
+        String firstName = firstNameTf.getText();
+        String lastName = lastNameTf.getText();
+        String email = emailTf.getText();
+        String phone = phoneTf.getText();
+        //String id_cliente = txtidCliente.getText();
+
+        if (firstName.length() == 0 && lastName.length() == 0 && email.length() == 0 && phone.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            boolean created = controladorClient.createClient(firstName, lastName, email, phone);
+            this.loadClientsTable();
+            if (created) {
+                JOptionPane.showMessageDialog(null, "Cliente creado con exito");
+                txtidCliente.setText("");
+                firstNameTf.setText("");
+                lastNameTf.setText("");
+                emailTf.setText("");
+                phoneTf.setText("");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo crear el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_createClientBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,10 +346,22 @@ public class TableClients extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backMenuBtn;
+    private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JTable clientsTable;
+    private javax.swing.JButton createClientBtn;
+    private javax.swing.JTextField emailTf;
+    private javax.swing.JTextField firstNameTf;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton loadTableBtn;
-    private javax.swing.JButton newClientBtn;
+    private javax.swing.JTextField lastNameTf;
+    private javax.swing.JTextField phoneTf;
+    private javax.swing.JTextField txtidCliente;
     // End of variables declaration//GEN-END:variables
 }
