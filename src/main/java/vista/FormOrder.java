@@ -30,6 +30,7 @@ public class FormOrder extends javax.swing.JFrame {
     ControladorOrderProduct controladorOrderProduct;
     ArrayList<OrderProduct> orderProducts;
     
+    
 
     /**
      * Creates new form FormOrder

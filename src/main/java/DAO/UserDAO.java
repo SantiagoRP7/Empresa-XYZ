@@ -18,7 +18,7 @@ public class UserDAO {
     private static final String SQL_LOGIN = "Select * from users where username= ? and password = ?";
 
     public UserDAO() {
-        
+        // Do nothing - SonarLint        
     }
     
     public boolean login(String username, String password) {
