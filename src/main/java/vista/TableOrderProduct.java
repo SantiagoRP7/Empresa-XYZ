@@ -9,6 +9,7 @@ import Controlador.ControladorOrder;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import modelo.Order;
+import reports.ReportPDF;
 
 /**
  *
@@ -63,6 +64,7 @@ public class TableOrderProduct extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         totalPriceOrderLbl = new javax.swing.JLabel();
+        printOrderBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +101,13 @@ public class TableOrderProduct extends javax.swing.JFrame {
 
         totalPriceOrderLbl.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         totalPriceOrderLbl.setText("jLabel7");
+
+        printOrderBtn.setText("Imprimir");
+        printOrderBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printOrderBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,7 +146,9 @@ public class TableOrderProduct extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(backBtn)
-                        .addGap(207, 207, 207)
+                        .addGap(49, 49, 49)
+                        .addComponent(printOrderBtn)
+                        .addGap(74, 74, 74)
                         .addComponent(jLabel6)
                         .addGap(45, 45, 45)
                         .addComponent(totalPriceOrderLbl)))
@@ -165,7 +176,9 @@ public class TableOrderProduct extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(backBtn)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(backBtn)
+                        .addComponent(printOrderBtn))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel6)
                         .addComponent(totalPriceOrderLbl)))
@@ -191,6 +204,13 @@ public class TableOrderProduct extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void printOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printOrderBtnActionPerformed
+        // TODO add your handling code here:
+        int idOrder = Integer.parseInt(idOrdenLbl.getText());
+        ReportPDF report = new ReportPDF();
+        report.generatePDF(idOrder);
+    }//GEN-LAST:event_printOrderBtnActionPerformed
+
     private void loadOrderProductsTable(int idOrder) {
         mdOderProductTable.setRowCount(0); //de esta forma vaciamos la tabla
         List<String[]> orderProducts = controladorOrderProduct.selectProductsById(idOrder);
@@ -211,7 +231,7 @@ public class TableOrderProduct extends javax.swing.JFrame {
     private void totalPriceOrder() {
         double total = 0;
         for (int i = 0; i < orderProductsTable.getRowCount(); i++) {
-            total+=Double.parseDouble(orderProductsTable.getModel().getValueAt(i, 5).toString());
+            total += Double.parseDouble(orderProductsTable.getModel().getValueAt(i, 5).toString());
         }
         totalPriceOrderLbl.setText(String.valueOf(total));
     }
@@ -266,6 +286,7 @@ public class TableOrderProduct extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameClientLbl;
     private javax.swing.JTable orderProductsTable;
+    private javax.swing.JButton printOrderBtn;
     private javax.swing.JLabel totalPriceOrderLbl;
     // End of variables declaration//GEN-END:variables
 }

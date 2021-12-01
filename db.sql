@@ -1,8 +1,8 @@
+drop table if exists orders_product;
+drop table if exists orders;
 drop table if exists users;
 drop table if exists client;
 drop table if exists product;
-drop table if exists orders;
-drop table if exists order_product;
 
 CREATE TABLE users(
     idUser serial primary key,
@@ -28,6 +28,10 @@ INSERT INTO users(username,firstName,lastName,password,telefono)
     phone varchar(12)
 );
 
+INSERT INTO client(idClient,firstName,lastName,email,phone)
+    VALUES 
+    (0, 'default', 'default','default','default');
+
 INSERT INTO client(firstName,lastName,email,phone)
     VALUES
         ('Ismael','Rivera', 'maelo@mail.com', '478598'),
@@ -52,10 +56,11 @@ INSERT INTO product(name, description, price)
 CREATE TABLE orders(
     idOrder serial primary key,
     dateOrder date,
-    idClient int not null,
+    idClient int not null default 0,
     constraint fk_order_client
         foreign key(idClient)
             references client(idClient)
+            on delete set default
 );
 
 --INSERT INTO orders (dateOrder, idClient) VALUES ('2021-11-24', 1), ('2021-11-24', 2);
@@ -65,7 +70,7 @@ CREATE TABLE orders_product(
     idOrder int,
     idProduct int,
     cantityProduct int,
-    primary key(idOrder, idProduct),
+    --primary key(idOrder, idProduct),
     constraint fk_order_m2m
         foreign key(idOrder)
             references orders(idOrder),
