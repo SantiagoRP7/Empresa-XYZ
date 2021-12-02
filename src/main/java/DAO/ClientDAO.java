@@ -25,7 +25,7 @@ public class ClientDAO {
     private static final String SQL_MODIFY = "update client set firstName=?, lastName=?, email=?, phone=? where idclient=?";
     
     public ClientDAO() {
-
+        // Do nothing - SonarLint
     }
     
         public boolean Modificar(Client client) {
@@ -106,8 +106,7 @@ public class ClientDAO {
 
         return clients;
     }
-    
-    
+
     public boolean insertar(Client client) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -132,7 +131,7 @@ public class ClientDAO {
 
         return false;
     }
-    
+
     public Client selectClientById(int idCli) {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -143,7 +142,7 @@ public class ClientDAO {
             stmt = conn.prepareStatement(SQL_SELECT_ID);
             stmt.setInt(1, idCli);
             rs = stmt.executeQuery();
-            
+
             if (rs.next()) {
                 int idClient = rs.getInt("idClient");
                 String firstName = rs.getString("firstName");

@@ -25,6 +25,7 @@ public class OrderDAO {
     private static String SQL_SELECT_ID = "SELECT * FROM orders natural join client where idOrder=?";
 
     public OrderDAO() {
+        // Do nothing - SonarLint
     }
 
     public List<Order> seleccionar() {
@@ -108,9 +109,9 @@ public class OrderDAO {
             close(conn);
         }
 
-        return lastOrderId+1;
+        return lastOrderId + 1;
     }
-    
+
     public Order selectOrderById(int idCli) {
         Connection conn = null;
         PreparedStatement stmt = null;
