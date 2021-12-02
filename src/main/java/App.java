@@ -14,6 +14,6 @@ public class App {
         FormLogin login = new FormLogin();
         login.setLocationRelativeTo(null);
         login.setVisible(true);
-        
+        System.out.println("prueba");
     }
 }
