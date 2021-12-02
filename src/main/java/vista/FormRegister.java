@@ -199,12 +199,12 @@ public class FormRegister extends javax.swing.JFrame {
 
         String contrasena = contrasenaTextField.getText();
         String contrasenaConfirmar = confirmarContrasenaTextField.getText();
-
+        ControladorUser controlUser = new ControladorUser(); 
         if (contrasena.equals(contrasenaConfirmar)) {
-
+            
             String usuario = usuarioTextField.getText();
             if (usuario.matches(RegexStatement.RegexUserName)) {
-                ControladorUser controlUser = new ControladorUser();
+                
                 if (controlUser.usuarioExistente(usuario)) {
                     JOptionPane.showMessageDialog(null, "el nombre de usuario ya está registrado, por favor seleccione otro");
                 } else {
