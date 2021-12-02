@@ -30,7 +30,7 @@ public class ControladorProduct {
         List<Product> products = productDao.seleccionar();
         List<String[]> productsReturn = new ArrayList<>();
         products.forEach( product -> {
-            String cli[] = {String.valueOf(product.getIdProduct()), product.getName(), product.getDescription(), String.valueOf(product.getPrice())};
+            String[] cli= {String.valueOf(product.getIdProduct()), product.getName(), product.getDescription(), String.valueOf(product.getPrice())};
             productsReturn.add(cli);
         });
         return productsReturn;

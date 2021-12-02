@@ -22,8 +22,8 @@ public class TableProducts extends javax.swing.JFrame {
      */
     public TableProducts() {
         initComponents();
-        String data[][] = {};
-        String columnsClientsTable[] = {"Código del producto", "Nombre", "Descripción", "Precio"};
+        String [][] data= {};
+        String [] columnsClientsTable = {"Código del producto", "Nombre", "Descripción", "Precio"};
         mdProductTable = new DefaultTableModel(data, columnsClientsTable);
         productsTable.setModel(mdProductTable);
         productsTable.setDefaultEditor(Object.class, null);
@@ -195,7 +195,7 @@ public class TableProducts extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMenuBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         this.setVisible(false);
         VistaUser MenuPrin = new VistaUser();
         MenuPrin.setLocationRelativeTo(null);
@@ -203,7 +203,7 @@ public class TableProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_backMenuBtnActionPerformed
 
     private void createProductBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProductBtn1ActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         String name = nameTf.getText();
         String description = descriptionTa.getText();
         String price = priceTf.getText();
@@ -227,7 +227,7 @@ public class TableProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_createProductBtn1ActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         try {
             String idProduct= txtIdproduct.getText();
             int idproduct = Integer.parseInt(idProduct);
@@ -247,11 +247,11 @@ public class TableProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         try {
             int selected = productsTable.getSelectedRow();
             String idOrderStr = productsTable.getModel().getValueAt(selected, 0).toString();
-            int idOrder = Integer.parseInt(idOrderStr);
+            var idOrder = Integer.parseInt(idOrderStr);
             txtIdproduct.setText(productsTable.getModel().getValueAt(selected, 0).toString());
             nameTf.setText(productsTable.getModel().getValueAt(selected, 1).toString());
             priceTf.setText(productsTable.getModel().getValueAt(selected, 3).toString());
@@ -300,6 +300,7 @@ public class TableProducts extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new TableProducts().setVisible(true);
             }

@@ -25,8 +25,8 @@ public class TableOrders extends javax.swing.JFrame {
     public TableOrders() {
         initComponents();
         controladorOrder = new ControladorOrder();
-        String data[][] = {};
-        String columnsOrderTable[] = {"Id pedido", "Fecha", "id cliente", "Nombre cliente"};
+        String[][] data = {};
+        String[] columnsOrderTable = {"Id pedido", "Fecha", "id cliente", "Nombre cliente"};
         mdOrdersTable = new DefaultTableModel(data, columnsOrderTable);
         tableOrders.setModel(mdOrdersTable);
         tableOrders.setDefaultEditor(Object.class, null);
@@ -140,7 +140,7 @@ public class TableOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loadOrdersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadOrdersBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         loadOrders();
     }//GEN-LAST:event_loadOrdersBtnActionPerformed
 
@@ -152,14 +152,14 @@ public class TableOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void createOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createOrderBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         FormOrder formOrder = new FormOrder();
         formOrder.setLocationRelativeTo(null);
         formOrder.setVisible(true);
     }//GEN-LAST:event_createOrderBtnActionPerformed
 
     private void consultProductOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultProductOrderBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         try {
             int selected = tableOrders.getSelectedRow();
             String idOrderStr = tableOrders.getModel().getValueAt(selected, 0).toString();
@@ -182,7 +182,7 @@ public class TableOrders extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

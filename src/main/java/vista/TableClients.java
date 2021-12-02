@@ -24,8 +24,8 @@ public class TableClients extends javax.swing.JFrame {
     public TableClients() {
         initComponents();
         controladorClient = new ControladorClient();
-        String data[][] = {};
-        String columnsClientsTable[] = {"Código del cliente", "Nombres", "Apellidos", "Correo electronico", "Telefono"};
+        String[][] data = {};
+        String[] columnsClientsTable = {"Código del cliente", "Nombres", "Apellidos", "Correo electronico", "Telefono"};
         mdClientsTable = new DefaultTableModel(data, columnsClientsTable);
         clientsTable.setModel(mdClientsTable);
         clientsTable.setDefaultEditor(Object.class, null);
@@ -217,13 +217,13 @@ public class TableClients extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMenuBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         this.setVisible(false);
         
     }//GEN-LAST:event_backMenuBtnActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
 
         try {
             String idclient = txtidCliente.getText();
@@ -242,7 +242,7 @@ public class TableClients extends javax.swing.JFrame {
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
 
         try {
             int selected = clientsTable.getSelectedRow();
@@ -259,7 +259,7 @@ public class TableClients extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         try {
             String idclient = txtidCliente.getText();
             int idcliente = Integer.parseInt(idclient);
@@ -276,12 +276,11 @@ public class TableClients extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void createClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClientBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         String firstName = firstNameTf.getText();
         String lastName = lastNameTf.getText();
         String email = emailTf.getText();
         String phone = phoneTf.getText();
-        //String id_cliente = txtidCliente.getText();
 
         if (firstName.length() == 0 && lastName.length() == 0 && email.length() == 0 && phone.length() == 0) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -302,13 +301,13 @@ public class TableClients extends javax.swing.JFrame {
     }//GEN-LAST:event_createClientBtnActionPerformed
 
     private void lastNameTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTfActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
     }//GEN-LAST:event_lastNameTfActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

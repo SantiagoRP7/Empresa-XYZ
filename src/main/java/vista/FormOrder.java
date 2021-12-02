@@ -41,8 +41,8 @@ public class FormOrder extends javax.swing.JFrame {
         controladorClient = new ControladorClient();
         controladorProduct = new ControladorProduct();
         controladorOrder = new ControladorOrder();
-        String data[][] = {};
-        String columnsProductsOrder[] = {"Código del producto", "Nombre", "Descripcion", "Precio und", "Cantidad", "Precio total"};
+        String[][] data = {};
+        String[] columnsProductsOrder = {"Código del producto", "Nombre", "Descripcion", "Precio und", "Cantidad", "Precio total"};
         mdProductsOrder = new DefaultTableModel(data, columnsProductsOrder);
         tableCreateOrder.setModel(mdProductsOrder);
         tableCreateOrder.setDefaultEditor(Object.class, null);
@@ -245,11 +245,11 @@ public class FormOrder extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cantityProductTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cantityProductTfActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
     }//GEN-LAST:event_cantityProductTfActionPerformed
 
     private void loadClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadClientBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         String idCliStr = idClientTf.getText();
         if (idCliStr.length() == 0) {
             JOptionPane.showMessageDialog(null, "Digite el código del cliente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -268,26 +268,25 @@ public class FormOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_loadClientBtnActionPerformed
 
     private void addProductBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         String idProdStr = idProductTf.getText();
         String cantStr = cantityProductTf.getText();
 
         if (idProdStr.length() == 0 || cantStr.length() == 0) {
             JOptionPane.showMessageDialog(null, "Digite el código del producto y la cantidad", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            try {//{"Id producto", "Nombre", "Descripcion", "Precio und", "Cantidad", "Precio total"};
+            try {
                 int cant = Integer.parseInt(cantStr);
                 int idProd = Integer.parseInt(idProdStr);
                 Product product = controladorProduct.selectProductById(idProd);
                 double price = product.getPrice();
                 double priceT = price * cant;
                 this.priceTotal += priceT;
-                String prod[] = {idProdStr, product.getName(), product.getDescription(), String.valueOf(price), cantStr, String.valueOf(priceT)};
+                String[] prod = {idProdStr, product.getName(), product.getDescription(), String.valueOf(price), cantStr, String.valueOf(priceT)};
                 OrderProduct temp = new OrderProduct();
                 temp.setIdProduct(new Product(idProd));
                 temp.setCantityProduct(cant);
                 orderProducts.add(temp);
-                
                 mdProductsOrder.addRow(prod);
                 totalOrderLbl.setText(String.valueOf(this.priceTotal));
                 idProductTf.setText("");
@@ -303,12 +302,12 @@ public class FormOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_addProductBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void createOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createOrderBtnActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         String idClientSTR = idClientLbl.getText(); 
         if(idClientSTR.length()==0){
             JOptionPane.showMessageDialog(null, "Porfavor ingresa el cliente", "Error", JOptionPane.ERROR_MESSAGE);
@@ -334,18 +333,18 @@ public class FormOrder extends javax.swing.JFrame {
     }//GEN-LAST:event_createOrderBtnActionPerformed
 
     private void btnEliminarprodpedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarprodpedidoActionPerformed
-        // TODO add your handling code here:
+        // add your handling code here:
         try {
             int selected = tableCreateOrder.getSelectedRow();          
             tableCreateOrder.getModel();
             String CantStr = tableCreateOrder.getModel().getValueAt(selected, 5).toString();
             mdProductsOrder.removeRow(tableCreateOrder.getSelectedRow());
-            
+            /*
             //String idOrderStr = tableCreateOrder.getModel().getValueAt(selected, 0).toString();
             //String CantStr = tableCreateOrder.getModel().getValueAt(selected, 4).toString();
             //String CantStr = tableCreateOrder.getModel().getValueAt(selected, 5).toString();
             //int idOrder = Integer.parseInt(idOrderStr);
-            //int cant = Integer.parseInt(CantStr);
+            //int cant = Integer.parseInt(CantStr);*/
             double precio_subs = Double.parseDouble(CantStr);
             //Product product = controladorProduct.selectProductById(idOrder);
             //double priceAct = product.getPrice();
@@ -358,15 +357,15 @@ public class FormOrder extends javax.swing.JFrame {
             orderProducts.remove(selected);
             
            
-        } catch (Exception e) {  //ArrayIndexOutOfBoundsException e
-            //JOptionPane.showMessageDialog(null, "Debe seleccionar un pedido de la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (Exception e) {  
+            //codigo
         }
     }//GEN-LAST:event_btnEliminarprodpedidoActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

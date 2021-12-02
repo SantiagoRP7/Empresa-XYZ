@@ -47,7 +47,7 @@ public class ReportPDF {
             String path = System.getProperty("user.home");
             List<String[]> orderProducts = controladorOrderProduct.selectProductsById(idOrder);
             Order order = controladorOrder.selectOrderById(idOrder);
-            PdfWriter.getInstance(document, new FileOutputStream(path + "/Facturas/Reporte" +String.valueOf(idOrder) + ".pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream(path + "/Facturas/Reporte" + idOrder + ".pdf"));
             Image header = Image.getInstance("src/main/java/imgs/xyz.png");
             header.scaleToFit(100,100);
             header.setAlignment(Chunk.ALIGN_LEFT);
@@ -59,7 +59,6 @@ public class ReportPDF {
             Paragraph total = new Paragraph();
             
             paragraph.setAlignment(Paragraph.ALIGN_CENTER);
-            //paragraph.add("Empresa XYZ");
             paragraph.setFont(FontFactory.getFont("Tahoma",18,Font.BOLD, BaseColor.DARK_GRAY));
             paragraph.add("Detalle de pedido \n\n");
             
@@ -105,7 +104,7 @@ public class ReportPDF {
             total.add("\n\n");
             total.setFont(FontFactory.getFont("Tahoma",16,Font.BOLD, BaseColor.DARK_GRAY));
             total.setAlignment(Paragraph.ALIGN_RIGHT);
-            total.add("Total a pagar: " + String.valueOf(totalPriceOrder));
+            total.add("Total a pagar: " + totalPriceOrder);
             total.add("\n\n\n");
             
             document.add(table);

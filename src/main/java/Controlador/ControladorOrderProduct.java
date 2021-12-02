@@ -23,7 +23,7 @@ public class ControladorOrderProduct {
         List<OrderProduct> orders = orderProductDao.seleccionar();
         List<String[]> ordersReturn = new ArrayList<>();
         orders.forEach( orderProduct -> {
-            String cli[] = {String.valueOf(orderProduct.getIdOrder()), String.valueOf(orderProduct.getIdProduct()), String.valueOf(orderProduct.getCantityProduct())};
+            String[] cli= {String.valueOf(orderProduct.getIdOrder()), String.valueOf(orderProduct.getIdProduct()), String.valueOf(orderProduct.getCantityProduct())};
             ordersReturn.add(cli);
         });
         return ordersReturn;
@@ -42,7 +42,7 @@ public class ControladorOrderProduct {
         List<String[]> productsReturn = new ArrayList<>();
         products.forEach(product -> {
             double totalPriceProd = product.getIdProduct().getPrice() * product.getCantityProduct();
-            String pro[] = {String.valueOf(product.getIdProduct().getIdProduct()), product.getIdProduct().getName(),product.getIdProduct().getDescription(), String.valueOf(product.getIdProduct().getPrice()), String.valueOf(product.getCantityProduct()), String.valueOf(totalPriceProd)};
+            String[] pro= {String.valueOf(product.getIdProduct().getIdProduct()), product.getIdProduct().getName(),product.getIdProduct().getDescription(), String.valueOf(product.getIdProduct().getPrice()), String.valueOf(product.getCantityProduct()), String.valueOf(totalPriceProd)};
             productsReturn.add(pro);
         });
         return productsReturn;

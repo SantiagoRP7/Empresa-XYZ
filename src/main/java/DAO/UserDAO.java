@@ -22,7 +22,7 @@ public class UserDAO {
     private static final String SQL_INSERT = "INSERT into users(username, firstname, lastname, password, telefono) VALUES(?,?,?,?,?)";
 
     public UserDAO() {
-
+        //SonarLint
     }
 
     public boolean login(String username, String password) {
@@ -61,14 +61,13 @@ public class UserDAO {
             stmt = conn.prepareStatement(SQL_CHECK);
             stmt.setString(1, username);
             rs = stmt.executeQuery();
-            
 
             if (rs.next()) {
                 return true;
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            
+
         } finally {
             close(rs);
             close(stmt);
@@ -95,13 +94,12 @@ public class UserDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-        } 
-        finally {
+        } finally {
             close(stmt);
             close(conn);
 
         }
-        return registros==1;
+        return registros == 1;
     }
 
 }

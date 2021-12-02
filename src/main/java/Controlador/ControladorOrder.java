@@ -26,7 +26,7 @@ public class ControladorOrder {
         List<Order> orders = orderDao.seleccionar();
         List<String[]> ordersReturn = new ArrayList<>();
         orders.forEach( order -> {
-            String cli[] = {String.valueOf(order.getIdOrder()), order.getDateOrder().toString(), String.valueOf(order.getIdClient().getIdClient()), String.valueOf(order.getIdClient().getFullName())};
+            String[] cli= {String.valueOf(order.getIdOrder()), order.getDateOrder().toString(), String.valueOf(order.getIdClient().getIdClient()), String.valueOf(order.getIdClient().getFullName())};
             ordersReturn.add(cli);
         });
         return ordersReturn;

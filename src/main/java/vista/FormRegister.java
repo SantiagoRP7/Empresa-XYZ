@@ -186,25 +186,25 @@ public class FormRegister extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nombreTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextFieldActionPerformed
-        // TODO add your handling code here:
+        //  add your handling code here:
     }//GEN-LAST:event_nombreTextFieldActionPerformed
 
     private void apellidoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoTextFieldActionPerformed
-        // TODO add your handling code here:
+        //  add your handling code here:
     }//GEN-LAST:event_apellidoTextFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        //  add your handling code here:
         ControladorEncode codificar = new ControladorEncode();
 
         String contrasena = contrasenaTextField.getText();
         String contrasenaConfirmar = confirmarContrasenaTextField.getText();
-
+        ControladorUser controlUser = new ControladorUser();
         if (contrasena.equals(contrasenaConfirmar)) {
 
             String usuario = usuarioTextField.getText();
             if (usuario.matches(RegexStatement.RegexUserName)) {
-                ControladorUser controlUser = new ControladorUser();
+
                 if (controlUser.usuarioExistente(usuario)) {
                     JOptionPane.showMessageDialog(null, "el nombre de usuario ya está registrado, por favor seleccione otro");
                 } else {
@@ -217,7 +217,7 @@ public class FormRegister extends javax.swing.JFrame {
                             User user = new User(usuario, nombre, apellido, contrasenaCodificada, telefono);
                             controlUser.registrarUsuario(user);
                             JOptionPane.showMessageDialog(null, "Registro realizado con éxito!.");
-                        }else{
+                        } else {
                             JOptionPane.showMessageDialog(null, "Formato de apellido no válido");
                         }
 
@@ -231,14 +231,13 @@ public class FormRegister extends javax.swing.JFrame {
                 String nombre = nombreTextField.getText();
                 String apellido = apellidoTextField.getText();
                 String contrasenaCodificada = codificar.codificar(contrasena);
-                String telefono= telefonoTextField.getText();
+                String telefono = telefonoTextField.getText();
                 User user = new User(usuario, nombre, apellido, contrasenaCodificada, telefono);
                 controlUser.registrarUsuario(user);
                 JOptionPane.showMessageDialog(null, "Registro realizado con éxito!.");
                 this.setVisible(false);
                 FormLogin menuLogin = new FormLogin();
                 menuLogin.setVisible(true);
-               
 
             }
 
@@ -248,11 +247,11 @@ public class FormRegister extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void telefonoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoTextFieldActionPerformed
-        // TODO add your handling code here:
+        //  add your handling code here:
     }//GEN-LAST:event_telefonoTextFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //  add your handling code here:
         setVisible(false);
         FormLogin login = new FormLogin();
         login.setVisible(true);
@@ -261,7 +260,7 @@ public class FormRegister extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -287,6 +286,7 @@ public class FormRegister extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new FormRegister().setVisible(true);
             }
