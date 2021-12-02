@@ -199,9 +199,8 @@ public class FormRegister extends javax.swing.JFrame {
         ControladorUser controlUser = new ControladorUser();
         String contrasena = contrasenaTextField.getText();
         String contrasenaConfirmar = confirmarContrasenaTextField.getText();
-
         if (contrasena.equals(contrasenaConfirmar)) {
-
+            
             String usuario = usuarioTextField.getText();
             if (usuario.matches(RegexStatement.RegexUserName)) {
                 if (controlUser.usuarioExistente(usuario)) {
@@ -244,6 +243,9 @@ public class FormRegister extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
         }
+        setVisible(false);
+        FormLogin login = new FormLogin();
+        login.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void telefonoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoTextFieldActionPerformed

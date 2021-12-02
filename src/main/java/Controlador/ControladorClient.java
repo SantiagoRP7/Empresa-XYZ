@@ -5,7 +5,10 @@
 package Controlador;
 
 import DAO.ClientDAO;
+import excepciones.InvalidEmail;
+import excepciones.InvalidLastName;
 import excepciones.InvalidName;
+import excepciones.InvalidPhone;
 import excepciones.RegexStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,27 +25,56 @@ public class ControladorClient {
         this.clientDao = new ClientDAO();
     }
     
-    public boolean createClient(String firstName, String lastName, String email, String phone) {
-        try {
+    public void createClient(String firstName, String lastName, String email, String phone) throws Exception {
+
+        
             if (firstName.matches(RegexStatement.RegexName)) {
-                Client client = new Client(firstName, lastName, email, phone);
-                return clientDao.insertar(client);   
+                 
+                if (lastName.matches(RegexStatement.RegexName)) {
+                    if (email.matches(RegexStatement.RegexEmail)) {
+                        if(phone.length()==10 || phone.length()==7){
+                            Client client = new Client(firstName, lastName, email, phone);
+                            clientDao.insertar(client);   
+                        }else{
+                            throw new InvalidPhone("Verificar que el telefono este bien escrito");
+                        }
+                    }else{
+                    throw new InvalidEmail("Verificar que el email este bien escrito");
+                    } 
+                }else{
+                throw new InvalidLastName("Verificar que el apellido este bien escrito y no contenga caracteres especiales");
+                }
             }else{
                 throw new InvalidName("Verificar que el nombre este bien escrito y no contenga caracteres especiales");
             }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+            
     }
     public boolean eliminar (int idclient) {
     return clientDao.eliminar(idclient);
     
     }
     
-     public boolean Modificar(int idclient, String firstName, String lastName, String email, String phone){
-      Client client = new Client(idclient, firstName, lastName, email, phone);
-         return clientDao.Modificar(client);
+     public void Modificar(int idclient, String firstName, String lastName, String email, String phone) throws Exception{
+         if (firstName.matches(RegexStatement.RegexName)) {
+                 
+                if (lastName.matches(RegexStatement.RegexName)) {
+                    if (email.matches(RegexStatement.RegexEmail)) {
+                        if(phone.length()==10 || phone.length()==7){
+                            Client client = new Client(idclient, firstName, lastName, email, phone);
+                            clientDao.Modificar(client);   
+                        }else{
+                            throw new InvalidPhone("Verificar que el telefono este bien escrito");
+                        }
+                    }else{
+                    throw new InvalidEmail("Verificar que el email este bien escrito");
+                    } 
+                }else{
+                throw new InvalidLastName("Verificar que el apellido este bien escrito y no contenga caracteres especiales");
+                }
+            }else{
+                throw new InvalidName("Verificar que el nombre este bien escrito y no contenga caracteres especiales");
+            }
+      
      }
     
     

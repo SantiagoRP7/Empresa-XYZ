@@ -6,6 +6,8 @@ package vista;
 
 import Controlador.ControladorClient;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -237,7 +239,7 @@ public class TableClients extends javax.swing.JFrame {
             phoneTf.setText("");
             JOptionPane.showMessageDialog(null, "El cliente se modificó", "Exito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pudo crear el cliente" +"\n"+e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -253,9 +255,9 @@ public class TableClients extends javax.swing.JFrame {
             lastNameTf.setText(clientsTable.getModel().getValueAt(selected, 2).toString());
             emailTf.setText(clientsTable.getModel().getValueAt(selected, 3).toString());
             phoneTf.setText(clientsTable.getModel().getValueAt(selected, 4).toString());
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        } 
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -286,18 +288,18 @@ public class TableClients extends javax.swing.JFrame {
         if (firstName.length() == 0 && lastName.length() == 0 && email.length() == 0 && phone.length() == 0) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            boolean created = controladorClient.createClient(firstName, lastName, email, phone);
-            this.loadClientsTable();
-            if (created) {
+            try {
+                controladorClient.createClient(firstName, lastName, email, phone);
                 JOptionPane.showMessageDialog(null, "Cliente creado con exito");
                 txtidCliente.setText("");
                 firstNameTf.setText("");
                 lastNameTf.setText("");
                 emailTf.setText("");
                 phoneTf.setText("");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo crear el cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "No se pudo crear el cliente" +"\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+            this.loadClientsTable();
         }
     }//GEN-LAST:event_createClientBtnActionPerformed
 
