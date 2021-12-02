@@ -10,7 +10,7 @@ import excepciones.RegexStatement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Client;
-
+//comentario
 /**
  *
  * @author juancamilo
