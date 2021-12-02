@@ -8,6 +8,7 @@ package vista;
 import javax.swing.JOptionPane;
 import Controlador.ControladorEncode;
 import Controlador.ControladorUser;
+import excepciones.RegexStatement;
 import modelo.User;
 
 /**
@@ -200,12 +201,33 @@ public class FormRegister extends javax.swing.JFrame {
         String contrasenaConfirmar = confirmarContrasenaTextField.getText();
 
         if (contrasena.equals(contrasenaConfirmar)) {
-            String usuario = usuarioTextField.getText();
 
-            ControladorUser controlUser = new ControladorUser();
-            if (controlUser.usuarioExistente(usuario)) {
-                JOptionPane.showMessageDialog(null, "el nombre de usuario ya está registrado, por favor seleccione otro");
+            String usuario = usuarioTextField.getText();
+            if (usuario.matches(RegexStatement.RegexUserName)) {
+                ControladorUser controlUser = new ControladorUser();
+                if (controlUser.usuarioExistente(usuario)) {
+                    JOptionPane.showMessageDialog(null, "el nombre de usuario ya está registrado, por favor seleccione otro");
+                } else {
+                    String nombre = nombreTextField.getText();
+                    if (nombre.matches(RegexStatement.RegexName)) {
+                        String apellido = apellidoTextField.getText();
+                        if (apellido.matches(RegexStatement.RegexName)) {
+                            String contrasenaCodificada = codificar.codificar(contrasena);
+                            String telefono = telefonoTextField.getText();
+                            User user = new User(usuario, nombre, apellido, contrasenaCodificada, telefono);
+                            controlUser.registrarUsuario(user);
+                            JOptionPane.showMessageDialog(null, "Registro realizado con éxito!.");
+                        }else{
+                            JOptionPane.showMessageDialog(null, "Formato de apellido no válido");
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Formato de nombre no válido");
+                    }
+
+                }
             } else {
+
                 String nombre = nombreTextField.getText();
                 String apellido = apellidoTextField.getText();
                 String contrasenaCodificada = codificar.codificar(contrasena);
@@ -216,6 +238,8 @@ public class FormRegister extends javax.swing.JFrame {
                 this.setVisible(false);
                 FormLogin menuLogin = new FormLogin();
                 menuLogin.setVisible(true);
+               
+
             }
 
         } else {
@@ -230,7 +254,7 @@ public class FormRegister extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         setVisible(false);
-        FormLogin login= new FormLogin();
+        FormLogin login = new FormLogin();
         login.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

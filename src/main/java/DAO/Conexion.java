@@ -14,11 +14,10 @@ import java.util.logging.Logger;
  */
 public class Conexion {
 
-
-    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/xyzBaseDatos1";
+    private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/testjava";
 
     private static final String JDBC_USER = "postgres";
-    private static final String JDBC_PASSWORD = "admin"; //postgres
+    private static final String JDBC_PASSWORD = "postgres"; //Cambiar despues
 
     public static Connection conexion;
 
