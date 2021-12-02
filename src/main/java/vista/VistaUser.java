@@ -4,17 +4,28 @@
  */
 package vista;
 
+import Controlador.ControladorProduct;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author juancamilo
  */
 public class VistaUser extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VistaUsuario
-     */
+    ControladorProduct controladorProduct = new ControladorProduct();
+    DefaultTableModel mdProductTable;
+
     public VistaUser() {
         initComponents();
+        this.setResizable(false);
+        String data[][] = {};
+        String columnsClientsTable[] = {"Codigo del producto", "Nombre", "Descripción", "Precio"};
+        mdProductTable = new DefaultTableModel(data, columnsClientsTable);
+        productsTable.setModel(mdProductTable);
+        productsTable.setDefaultEditor(Object.class, null);
+        loadProductsTable();
     }
 
     /**
@@ -27,67 +38,252 @@ public class VistaUser extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        createClientBtn = new javax.swing.JButton();
-        productsBtn = new javax.swing.JButton();
-        ordersBtn = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        productsTable = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        panelMenu = new javax.swing.JPanel();
+        btnSalirSistema = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jbtnsalir = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jbtnClientes1 = new javax.swing.JPanel();
+        jbtnClientes = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jbtnProductos = new javax.swing.JPanel();
+        jbtnProductos1 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jbtnPedidos = new javax.swing.JPanel();
+        jbtnPedidos1 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("Menú principal");
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        createClientBtn.setText("Clientes");
-        createClientBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createClientBtnActionPerformed(evt);
-            }
-        });
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 30));
 
-        productsBtn.setText("Productos");
-        productsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                productsBtnActionPerformed(evt);
-            }
-        });
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(218, 234, 243), 1, true));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        ordersBtn.setText("Pedidos");
-        ordersBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ordersBtnActionPerformed(evt);
-            }
-        });
+        jPanel5.setBackground(new java.awt.Color(0, 128, 244));
+        jPanel5.setForeground(new java.awt.Color(0, 128, 244));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(productsBtn)
-                            .addComponent(createClientBtn)
-                            .addComponent(ordersBtn))))
-                .addContainerGap(223, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addComponent(createClientBtn)
-                .addGap(32, 32, 32)
-                .addComponent(productsBtn)
-                .addGap(29, 29, 29)
-                .addComponent(ordersBtn)
-                .addContainerGap(147, Short.MAX_VALUE))
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
         );
+
+        jPanel2.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 430, -1));
+
+        productsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(productsTable);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 390, 330));
+
+        jLabel9.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 128, 244));
+        jLabel9.setText("Productos");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 30, 430, 460));
+
+        panelMenu.setBackground(new java.awt.Color(218, 234, 243));
+        panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnSalirSistema.setBackground(new java.awt.Color(204, 204, 204));
+        btnSalirSistema.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalirSistemaMouseClicked(evt);
+            }
+        });
+
+        jbtnsalir.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jbtnsalir.setText("Salir");
+        jbtnsalir.setToolTipText("");
+        jbtnsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnsalirMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Desktop\\Empresa-XYZ-master (1)\\Empresa-XYZ-master\\src\\main\\java\\images\\cerrar-sesion 24px.png")); // NOI18N
+
+        javax.swing.GroupLayout btnSalirSistemaLayout = new javax.swing.GroupLayout(btnSalirSistema);
+        btnSalirSistema.setLayout(btnSalirSistemaLayout);
+        btnSalirSistemaLayout.setHorizontalGroup(
+            btnSalirSistemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnSalirSistemaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnsalir)
+                .addContainerGap(130, Short.MAX_VALUE))
+        );
+        btnSalirSistemaLayout.setVerticalGroup(
+            btnSalirSistemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnSalirSistemaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(btnSalirSistemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(btnSalirSistemaLayout.createSequentialGroup()
+                        .addGroup(btnSalirSistemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addGroup(btnSalirSistemaLayout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(22, 22, 22)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        panelMenu.add(btnSalirSistema, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 200, 40));
+
+        jbtnClientes1.setBackground(new java.awt.Color(167, 167, 178));
+        jbtnClientes1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnClientes1MouseClicked(evt);
+            }
+        });
+
+        jbtnClientes.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
+        jbtnClientes.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnClientes.setText("Clientes");
+        jbtnClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnClientesMouseClicked(evt);
+            }
+        });
+
+        jLabel12.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Desktop\\Empresa-XYZ-master (1)\\Empresa-XYZ-master\\src\\main\\java\\images\\cliente 24px.png")); // NOI18N
+
+        javax.swing.GroupLayout jbtnClientes1Layout = new javax.swing.GroupLayout(jbtnClientes1);
+        jbtnClientes1.setLayout(jbtnClientes1Layout);
+        jbtnClientes1Layout.setHorizontalGroup(
+            jbtnClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jbtnClientes1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(41, 41, 41)
+                .addComponent(jbtnClientes)
+                .addContainerGap(78, Short.MAX_VALUE))
+        );
+        jbtnClientes1Layout.setVerticalGroup(
+            jbtnClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jbtnClientes1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbtnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        panelMenu.add(jbtnClientes1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 200, 30));
+
+        jbtnProductos.setBackground(new java.awt.Color(204, 204, 204));
+        jbtnProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnProductosMouseClicked(evt);
+            }
+        });
+
+        jbtnProductos1.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
+        jbtnProductos1.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnProductos1.setText("Productos");
+        jbtnProductos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnProductos1MouseClicked(evt);
+            }
+        });
+
+        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Desktop\\Empresa-XYZ-master (1)\\Empresa-XYZ-master\\src\\main\\java\\images\\caja 24px.png")); // NOI18N
+
+        javax.swing.GroupLayout jbtnProductosLayout = new javax.swing.GroupLayout(jbtnProductos);
+        jbtnProductos.setLayout(jbtnProductosLayout);
+        jbtnProductosLayout.setHorizontalGroup(
+            jbtnProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jbtnProductosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jbtnProductos1)
+                .addContainerGap(71, Short.MAX_VALUE))
+        );
+        jbtnProductosLayout.setVerticalGroup(
+            jbtnProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jbtnProductosLayout.createSequentialGroup()
+                .addComponent(jbtnProductos1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        panelMenu.add(jbtnProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 200, 30));
+
+        jbtnPedidos.setBackground(new java.awt.Color(174, 169, 169));
+        jbtnPedidos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnPedidosMouseClicked(evt);
+            }
+        });
+
+        jbtnPedidos1.setFont(new java.awt.Font("Agency FB", 1, 20)); // NOI18N
+        jbtnPedidos1.setForeground(new java.awt.Color(255, 255, 255));
+        jbtnPedidos1.setText("Pedidos");
+        jbtnPedidos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtnPedidos1MouseClicked(evt);
+            }
+        });
+
+        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Desktop\\Empresa-XYZ-master (1)\\Empresa-XYZ-master\\src\\main\\java\\images\\carrito-de-compras 24 px.png")); // NOI18N
+
+        javax.swing.GroupLayout jbtnPedidosLayout = new javax.swing.GroupLayout(jbtnPedidos);
+        jbtnPedidos.setLayout(jbtnPedidosLayout);
+        jbtnPedidosLayout.setHorizontalGroup(
+            jbtnPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jbtnPedidosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jbtnPedidos1)
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+        jbtnPedidosLayout.setVerticalGroup(
+            jbtnPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jbtnPedidosLayout.createSequentialGroup()
+                .addComponent(jbtnPedidos1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        panelMenu.add(jbtnPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 200, 30));
+
+        jLabel6.setFont(new java.awt.Font("Agency FB", 1, 25)); // NOI18N
+        jLabel6.setText("Menú Principal");
+        panelMenu.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+
+        jPanel1.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 200, 460));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,29 +299,68 @@ public class VistaUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createClientBtnActionPerformed
+    private void jbtnsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnsalirMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jbtnsalirMouseClicked
+
+    private void btnSalirSistemaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirSistemaMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirSistemaMouseClicked
+
+    private void jbtnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnClientesMouseClicked
         // TODO add your handling code here:
         TableClients tableClients = new TableClients();
         tableClients.setLocationRelativeTo(null);
         tableClients.setVisible(true);
-    }//GEN-LAST:event_createClientBtnActionPerformed
 
-    private void productsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productsBtnActionPerformed
-        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnClientesMouseClicked
+
+    private void jbtnClientes1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnClientes1MouseClicked
+        TableClients tableClients = new TableClients();
+        tableClients.setLocationRelativeTo(null);
+        tableClients.setVisible(true);
+    }//GEN-LAST:event_jbtnClientes1MouseClicked
+
+    private void jbtnProductos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductos1MouseClicked
         TableProducts tableProducts = new TableProducts();
         tableProducts.setLocationRelativeTo(null);
         tableProducts.setVisible(true);
-    }//GEN-LAST:event_productsBtnActionPerformed
 
-    private void ordersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersBtnActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jbtnProductos1MouseClicked
+
+    private void jbtnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseClicked
+        TableProducts tableProducts = new TableProducts();
+        tableProducts.setLocationRelativeTo(null);
+        tableProducts.setVisible(true);
+
+        this.setVisible(false);
+    }//GEN-LAST:event_jbtnProductosMouseClicked
+
+    private void jbtnPedidos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnPedidos1MouseClicked
         TableOrders tableOrders = new TableOrders();
         tableOrders.setLocationRelativeTo(null);
         tableOrders.setVisible(true);
-//        FormOrder formOrder = new FormOrder();
-//        formOrder.setLocationRelativeTo(null);
-//        formOrder.setVisible(true);
-    }//GEN-LAST:event_ordersBtnActionPerformed
+
+        this.setVisible(false);
+    }//GEN-LAST:event_jbtnPedidos1MouseClicked
+
+    private void jbtnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnPedidosMouseClicked
+        TableOrders tableOrders = new TableOrders();
+        tableOrders.setLocationRelativeTo(null);
+        tableOrders.setVisible(true);
+
+        this.setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_jbtnPedidosMouseClicked
+
+    public void loadProductsTable() {
+        mdProductTable.setRowCount(0); //de esta forma vaciamos la tabla
+        List<String[]> products = controladorProduct.selectProducts();
+        products.forEach(product -> {
+            mdProductTable.addRow(product);
+        });
+    }
 
     /**
      * @param args the command line arguments
@@ -164,10 +399,27 @@ public class VistaUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton createClientBtn;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel btnSalirSistema;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton ordersBtn;
-    private javax.swing.JButton productsBtn;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jbtnClientes;
+    private javax.swing.JPanel jbtnClientes1;
+    private javax.swing.JPanel jbtnPedidos;
+    private javax.swing.JLabel jbtnPedidos1;
+    private javax.swing.JPanel jbtnProductos;
+    private javax.swing.JLabel jbtnProductos1;
+    private javax.swing.JLabel jbtnsalir;
+    private javax.swing.JPanel panelMenu;
+    private javax.swing.JTable productsTable;
     // End of variables declaration//GEN-END:variables
 }

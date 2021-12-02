@@ -62,10 +62,10 @@ public class ClientDAO {
             stmt = conn.prepareStatement(SQL_DELETE);
             stmt.setInt(1,idclient);
             registros = stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "El pedido se eliminó", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El cliente se eliminó", "Exito", JOptionPane.INFORMATION_MESSAGE);
            
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "No se pudo eliminar el pedido" + e, "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar el cliente" + e, "Error al eliminar", JOptionPane.ERROR_MESSAGE);
         }finally {
             close(stmt);
             close(conn);

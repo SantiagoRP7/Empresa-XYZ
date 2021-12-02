@@ -42,7 +42,7 @@ public class FormOrder extends javax.swing.JFrame {
         controladorProduct = new ControladorProduct();
         controladorOrder = new ControladorOrder();
         String data[][] = {};
-        String columnsProductsOrder[] = {"Id producto", "Nombre", "Descripcion", "Precio und", "Cantidad", "Precio total"};
+        String columnsProductsOrder[] = {"Código del producto", "Nombre", "Descripcion", "Precio und", "Cantidad", "Precio total"};
         mdProductsOrder = new DefaultTableModel(data, columnsProductsOrder);
         tableCreateOrder.setModel(mdProductsOrder);
         tableCreateOrder.setDefaultEditor(Object.class, null);
@@ -79,41 +79,81 @@ public class FormOrder extends javax.swing.JFrame {
         totalOrderLbl = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         btnEliminarprodpedido = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 128, 244));
         jLabel1.setText("Pedidos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, -1, -1));
 
-        jLabel2.setText("Escriba el id del cliente:");
+        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel2.setText("Digite el código del cliente:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
+        idClientTf.setBorder(null);
+        jPanel1.add(idClientTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 110, -1));
+
+        loadClientBtn.setBackground(new java.awt.Color(153, 102, 255));
+        loadClientBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        loadClientBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\refresh.png")); // NOI18N
         loadClientBtn.setText("Cargar");
         loadClientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadClientBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(loadClientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         jLabel3.setText("Nombre:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 110, -1, -1));
 
-        jLabel4.setText("Id Cliente:");
+        jLabel4.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel4.setText("Código del cliente:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, -1, -1));
+        jPanel1.add(idClientLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 56, 14));
+        jPanel1.add(nameClientLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 110, 14));
 
+        addProductBtn.setBackground(new java.awt.Color(51, 153, 255));
+        addProductBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        addProductBtn.setForeground(new java.awt.Color(255, 255, 255));
+        addProductBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\anadir.png")); // NOI18N
         addProductBtn.setText("Añadir");
         addProductBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addProductBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(addProductBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 110, -1));
 
-        jLabel5.setText("Escriba el id del producto:");
+        jLabel5.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel5.setText("Digite el código del producto:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        jLabel6.setText("Cantidad");
+        jLabel6.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel6.setText("Digite la cantidad:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(65, 160, 90, -1));
 
+        cantityProductTf.setBorder(null);
         cantityProductTf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cantityProductTfActionPerformed(evt);
             }
         });
+        jPanel1.add(cantityProductTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 110, -1));
+
+        idProductTf.setBorder(null);
+        jPanel1.add(idProductTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 120, 110, -1));
 
         tableCreateOrder.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,133 +165,76 @@ public class FormOrder extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableCreateOrder);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 247, 460, 200));
+
+        createOrderBtn.setBackground(new java.awt.Color(51, 153, 255));
+        createOrderBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        createOrderBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\agregar-paquete.png")); // NOI18N
         createOrderBtn.setText("Crear");
         createOrderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createOrderBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(createOrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 120, -1));
 
-        jLabel7.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         jLabel7.setText("Total del pedido:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, -1));
 
         totalOrderLbl.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jPanel1.add(totalOrderLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 80, 23));
 
+        backBtn.setBackground(new java.awt.Color(67, 35, 248));
+        backBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        backBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\cancelar.png")); // NOI18N
         backBtn.setText("Cancelar");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 400, 120, -1));
 
+        btnEliminarprodpedido.setBackground(new java.awt.Color(255, 0, 0));
+        btnEliminarprodpedido.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        btnEliminarprodpedido.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\eliminar 24px.png")); // NOI18N
         btnEliminarprodpedido.setText("Eliminar");
         btnEliminarprodpedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarprodpedidoActionPerformed(evt);
             }
         });
+        jPanel1.add(btnEliminarprodpedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 335, 120, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addProductBtn)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel6)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(idClientTf, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                            .addComponent(idProductTf)
-                            .addComponent(cantityProductTf))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(loadClientBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3))
-                                .addGap(32, 32, 32)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nameClientLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                                    .addComponent(idClientLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(103, 103, 103))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(jLabel7)
-                        .addGap(31, 31, 31)
-                        .addComponent(totalOrderLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 23, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(171, 171, 171)
-                .addComponent(backBtn)
-                .addGap(194, 194, 194)
-                .addComponent(createOrderBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminarprodpedido)
-                .addGap(82, 82, 82))
+        jPanel2.setBackground(new java.awt.Color(0, 128, 244));
+        jPanel2.setForeground(new java.awt.Color(0, 128, 244));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(idClientTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(loadClientBtn))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(idClientLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nameClientLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(idProductTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cantityProductTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addProductBtn)
-                    .addComponent(jLabel7)
-                    .addComponent(totalOrderLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(createOrderBtn)
-                    .addComponent(btnEliminarprodpedido))
-                .addContainerGap(16, Short.MAX_VALUE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 470, 680, 30));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 110, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 110, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 110, 10));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 110, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 654, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +252,7 @@ public class FormOrder extends javax.swing.JFrame {
         // TODO add your handling code here:
         String idCliStr = idClientTf.getText();
         if (idCliStr.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debe escribir el id del cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Digite el código del cliente", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {
                 int idCli = Integer.parseInt(idCliStr);
@@ -277,7 +260,7 @@ public class FormOrder extends javax.swing.JFrame {
                 idClientLbl.setText(String.valueOf(client.getIdClient()));
                 nameClientLbl.setText(client.getFullName());
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "El id del cliente debe ser numérico", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El código del cliente debe ser numérico", "Error", JOptionPane.ERROR_MESSAGE);
             } catch(NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "No existe el cliente con el id "+ idCliStr, "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -290,7 +273,7 @@ public class FormOrder extends javax.swing.JFrame {
         String cantStr = cantityProductTf.getText();
 
         if (idProdStr.length() == 0 || cantStr.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Debe escribir el id del producto y la cantidad", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Digite el código del producto y la cantidad", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             try {//{"Id producto", "Nombre", "Descripcion", "Precio und", "Cantidad", "Precio total"};
                 int cant = Integer.parseInt(cantStr);
@@ -310,7 +293,7 @@ public class FormOrder extends javax.swing.JFrame {
                 idProductTf.setText("");
                 cantityProductTf.setText("");
             } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "El id del producto y la cantidad deben ser valores numericos", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El código del producto y la cantidad deben ser valores numericos", "Error", JOptionPane.ERROR_MESSAGE);
             } catch(NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "No existe el producto con el id "+ idProdStr, "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -432,7 +415,13 @@ public class FormOrder extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JButton loadClientBtn;
     private javax.swing.JLabel nameClientLbl;
     private javax.swing.JTable tableCreateOrder;
