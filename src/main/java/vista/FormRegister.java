@@ -196,7 +196,7 @@ public class FormRegister extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         ControladorEncode codificar = new ControladorEncode();
-
+        ControladorUser controlUser = new ControladorUser();
         String contrasena = contrasenaTextField.getText();
         String contrasenaConfirmar = confirmarContrasenaTextField.getText();
 
@@ -204,7 +204,6 @@ public class FormRegister extends javax.swing.JFrame {
 
             String usuario = usuarioTextField.getText();
             if (usuario.matches(RegexStatement.RegexUserName)) {
-                ControladorUser controlUser = new ControladorUser();
                 if (controlUser.usuarioExistente(usuario)) {
                     JOptionPane.showMessageDialog(null, "el nombre de usuario ya está registrado, por favor seleccione otro");
                 } else {
