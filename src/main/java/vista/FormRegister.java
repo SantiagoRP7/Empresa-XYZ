@@ -245,6 +245,9 @@ public class FormRegister extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
         }
+        setVisible(false);
+        FormLogin login = new FormLogin();
+        login.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void telefonoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefonoTextFieldActionPerformed
