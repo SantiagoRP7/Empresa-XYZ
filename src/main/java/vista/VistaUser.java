@@ -5,7 +5,10 @@
 package vista;
 
 import Controlador.ControladorProduct;
+import excepciones.DBConexionExcepcion;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,7 +20,7 @@ public class VistaUser extends javax.swing.JFrame {
     ControladorProduct controladorProduct = new ControladorProduct();
     DefaultTableModel mdProductTable;
 
-    public VistaUser() {
+    public VistaUser() throws DBConexionExcepcion {
         initComponents();
         this.setResizable(false);
         String data[][] = {};
@@ -310,20 +313,35 @@ public class VistaUser extends javax.swing.JFrame {
 
     private void jbtnClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnClientesMouseClicked
         // TODO add your handling code here:
-        TableClients tableClients = new TableClients();
+        TableClients tableClients = null;
+        try {
+            tableClients = new TableClients();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(VistaUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tableClients.setLocationRelativeTo(null);
         tableClients.setVisible(true);
 
     }//GEN-LAST:event_jbtnClientesMouseClicked
 
     private void jbtnClientes1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnClientes1MouseClicked
-        TableClients tableClients = new TableClients();
+        TableClients tableClients = null;
+        try {
+            tableClients = new TableClients();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(VistaUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tableClients.setLocationRelativeTo(null);
         tableClients.setVisible(true);
     }//GEN-LAST:event_jbtnClientes1MouseClicked
 
     private void jbtnProductos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductos1MouseClicked
-        TableProducts tableProducts = new TableProducts();
+        TableProducts tableProducts = null;
+        try {
+            tableProducts = new TableProducts();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(VistaUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tableProducts.setLocationRelativeTo(null);
         tableProducts.setVisible(true);
 
@@ -331,7 +349,12 @@ public class VistaUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnProductos1MouseClicked
 
     private void jbtnProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnProductosMouseClicked
-        TableProducts tableProducts = new TableProducts();
+        TableProducts tableProducts = null;
+        try {
+            tableProducts = new TableProducts();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(VistaUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tableProducts.setLocationRelativeTo(null);
         tableProducts.setVisible(true);
 
@@ -339,7 +362,12 @@ public class VistaUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnProductosMouseClicked
 
     private void jbtnPedidos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnPedidos1MouseClicked
-        TableOrders tableOrders = new TableOrders();
+        TableOrders tableOrders = null;
+        try {
+            tableOrders = new TableOrders();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(VistaUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tableOrders.setLocationRelativeTo(null);
         tableOrders.setVisible(true);
 
@@ -347,14 +375,19 @@ public class VistaUser extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnPedidos1MouseClicked
 
     private void jbtnPedidosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnPedidosMouseClicked
-        TableOrders tableOrders = new TableOrders();
+        TableOrders tableOrders = null;
+        try {
+            tableOrders = new TableOrders();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(VistaUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
         tableOrders.setLocationRelativeTo(null);
         tableOrders.setVisible(true);
 
         this.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_jbtnPedidosMouseClicked
 
-    public void loadProductsTable() {
+    public void loadProductsTable() throws DBConexionExcepcion {
         mdProductTable.setRowCount(0); //de esta forma vaciamos la tabla
         List<String[]> products = controladorProduct.selectProducts();
         products.forEach(product -> {
@@ -393,7 +426,11 @@ public class VistaUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaUser().setVisible(true);
+                try {
+                    new VistaUser().setVisible(true);
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(VistaUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

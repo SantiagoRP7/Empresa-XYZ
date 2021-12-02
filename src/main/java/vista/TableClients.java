@@ -5,6 +5,7 @@
 package vista;
 
 import Controlador.ControladorClient;
+import excepciones.DBConexionExcepcion;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,7 @@ public class TableClients extends javax.swing.JFrame {
     /**
      * Creates new form TableUsers
      */
-    public TableClients() {
+    public TableClients() throws DBConexionExcepcion {
         initComponents();
         controladorClient = new ControladorClient();
         String data[][] = {};
@@ -299,7 +300,11 @@ public class TableClients extends javax.swing.JFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "No se pudo crear el cliente" +"\n"+ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-            this.loadClientsTable();
+            try {
+                this.loadClientsTable();
+            } catch (DBConexionExcepcion ex) {
+                Logger.getLogger(TableClients.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_createClientBtnActionPerformed
 
@@ -338,12 +343,16 @@ public class TableClients extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TableClients().setVisible(true);
+                try {
+                    new TableClients().setVisible(true);
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(TableClients.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
-    private void loadClientsTable() {
+    private void loadClientsTable() throws DBConexionExcepcion {
         mdClientsTable.setRowCount(0); //de esta forma vaciamos la tabla
         List<String[]> clients = controladorClient.selectClients();
         clients.forEach(client -> {

@@ -5,6 +5,7 @@
 package Controlador;
 
 import DAO.ProductDAO;
+import excepciones.DBConexionExcepcion;
 import java.util.*;
 import modelo.Product;
 
@@ -20,13 +21,13 @@ public class ControladorProduct {
         productDao = new ProductDAO();
     }
     
-    public boolean Modificar(int idproduct, String name, String description, double price){
+    public boolean Modificar(int idproduct, String name, String description, double price) throws DBConexionExcepcion{
       Product product = new Product (idproduct, name, description, price);
          return productDao.Modificar(product);
      }
     
     
-    public List<String[]> selectProducts() {
+    public List<String[]> selectProducts() throws DBConexionExcepcion {
         List<Product> products = productDao.seleccionar();
         List<String[]> productsReturn = new ArrayList<>();
         products.forEach( product -> {
@@ -36,12 +37,12 @@ public class ControladorProduct {
         return productsReturn;
     }
     
-    public boolean createProduct(String name, String description, double price) {
+    public boolean createProduct(String name, String description, double price) throws DBConexionExcepcion {
         Product product = new Product(name, description, price);
         return productDao.insertar(product);
     }
     
-    public Product selectProductById(int idPro) {
+    public Product selectProductById(int idPro) throws DBConexionExcepcion {
         return productDao.selectProductById(idPro);
     }
     

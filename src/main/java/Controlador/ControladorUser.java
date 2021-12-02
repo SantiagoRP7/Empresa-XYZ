@@ -5,6 +5,7 @@
 package Controlador;
 
 import DAO.*;
+import excepciones.DBConexionExcepcion;
 import modelo.User;
 
 /**
@@ -19,16 +20,16 @@ public class ControladorUser {
         this.userDao = new UserDAO();
     }
 
-    public boolean login(String username, String password) {
+    public boolean login(String username, String password) throws DBConexionExcepcion {
         return userDao.login(username, password);
     }
     
-    public boolean usuarioExistente(String userName){
+    public boolean usuarioExistente(String userName) throws DBConexionExcepcion{
          
         return userDao.comprobarUserName(userName);
     }
     
-    public boolean registrarUsuario(User user){
+    public boolean registrarUsuario(User user) throws DBConexionExcepcion{
         return userDao.registrarUsuario(user);
     }
 

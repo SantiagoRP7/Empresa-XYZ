@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static DAO.Conexion.*;
+import excepciones.DBConexionExcepcion;
 
 /**
  *
@@ -22,7 +23,7 @@ public class ProductDAO {
     private static final String SQL_SELECT_ID = "Select * from product where idProduct=?";
      private static final String SQL_MODIFY = "update product set name=?, description=?, price=? where idproduct=?";
      
-       public boolean Modificar(Product product) {
+       public boolean Modificar(Product product) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -37,7 +38,7 @@ public class ProductDAO {
             
 
         } catch (Exception e) {
-            
+            throw new DBConexionExcepcion("Error Al Modificar El Producto", e);
         } finally {
             close(stmt);
             close(conn);
@@ -46,7 +47,7 @@ public class ProductDAO {
     }
     
 
-    public List<Product> seleccionar() {
+    public List<Product> seleccionar() throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -68,7 +69,7 @@ public class ProductDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Selecionar El Producto", ex);
         } finally {
             close(rs);
             close(stmt);
@@ -78,7 +79,7 @@ public class ProductDAO {
         return products;
     }
 
-    public boolean insertar(Product product) {
+    public boolean insertar(Product product) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -92,17 +93,15 @@ public class ProductDAO {
             return registros == 1;
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Insertar El Producto", ex);
         } finally {
             close(stmt);
             close(conn);
 
         }
-
-        return false;
     }
 
-    public Product selectProductById(int idCli) {
+    public Product selectProductById(int idCli) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -122,7 +121,7 @@ public class ProductDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Selecionar El Producto", ex);
         } finally {
             close(rs);
             close(stmt);

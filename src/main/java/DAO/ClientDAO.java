@@ -6,10 +6,9 @@ package DAO;
 
 import java.sql.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.Client;
 import static DAO.Conexion.*;
+import excepciones.DBConexionExcepcion;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +27,7 @@ public class ClientDAO {
 
     }
     
-        public boolean Modificar(Client client) {
+        public boolean Modificar(Client client) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -51,7 +50,7 @@ public class ClientDAO {
         }return registros == 1 ;
         
     }
-     public boolean eliminar(int idclient) {
+     public boolean eliminar(int idclient) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         
@@ -66,6 +65,7 @@ public class ClientDAO {
            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "No se pudo eliminar el cliente" + e, "Error al eliminar", JOptionPane.ERROR_MESSAGE);
+            throw new DBConexionExcepcion("Error Al Eliminar El Cliente De La Base De Datos", e);
         }finally {
             close(stmt);
             close(conn);
@@ -74,7 +74,7 @@ public class ClientDAO {
 
     
 
-    public List<Client> seleccionar() {
+    public List<Client> seleccionar() throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -97,7 +97,7 @@ public class ClientDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Seleccionar El Cliente De La Base De Datos", ex);
         } finally {
             close(rs);
             close(stmt);
@@ -108,7 +108,7 @@ public class ClientDAO {
     }
     
     
-    public boolean insertar(Client client) {
+    public boolean insertar(Client client) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -123,17 +123,15 @@ public class ClientDAO {
             return registros == 1;
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Insertar El Cliente a La Base De Datos", ex);
         } finally {
             close(stmt);
             close(conn);
 
         }
-
-        return false;
     }
     
-    public Client selectClientById(int idCli) {
+    public Client selectClientById(int idCli) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -154,7 +152,7 @@ public class ClientDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Obtener El Cliente De La Base De Datos", ex);
         } finally {
             close(rs);
             close(stmt);

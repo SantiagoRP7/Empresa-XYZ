@@ -9,7 +9,10 @@ import Controlador.ControladorClient;
 import Controlador.ControladorOrder;
 import Controlador.ControladorOrderProduct;
 import Controlador.ControladorProduct;
+import excepciones.DBConexionExcepcion;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Client;
 import modelo.Order;
@@ -263,6 +266,8 @@ public class FormOrder extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El código del cliente debe ser numérico", "Error", JOptionPane.ERROR_MESSAGE);
             } catch(NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "No existe el cliente con el id "+ idCliStr, "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (DBConexionExcepcion ex) {
+                Logger.getLogger(FormOrder.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_loadClientBtnActionPerformed
@@ -296,6 +301,8 @@ public class FormOrder extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El código del producto y la cantidad deben ser valores numericos", "Error", JOptionPane.ERROR_MESSAGE);
             } catch(NullPointerException e) {
                 JOptionPane.showMessageDialog(null, "No existe el producto con el id "+ idProdStr, "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (DBConexionExcepcion ex) {
+                Logger.getLogger(FormOrder.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -314,16 +321,34 @@ public class FormOrder extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Porfavor ingresa el cliente", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             int idClient = Integer.parseInt(idClientSTR);
-            int idOrder = controladorOrder.getLastOrderId();
-            boolean created = controladorOrder.createOrder(idClient, idOrder);
+            int idOrder = 0;
+            try {
+                idOrder = controladorOrder.getLastOrderId();
+            } catch (DBConexionExcepcion ex) {
+                Logger.getLogger(FormOrder.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            boolean created = false;
+            try {
+                created = controladorOrder.createOrder(idClient, idOrder);
+            } catch (DBConexionExcepcion ex) {
+                Logger.getLogger(FormOrder.class.getName()).log(Level.SEVERE, null, ex);
+            }
             if (created) {
                 for (int i = 0; i < orderProducts.size(); i++) {
                     orderProducts.get(i).setIdOrder(new Order(idOrder));
                 }
-                controladorOrderProduct.createOrderProduct(orderProducts);
+                try {
+                    controladorOrderProduct.createOrderProduct(orderProducts);
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(FormOrder.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 JOptionPane.showMessageDialog(null, "Pedido creado con exito");
                 ReportPDF report = new ReportPDF();
-                report.generatePDF(idOrder);
+                try {
+                    report.generatePDF(idOrder);
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(FormOrder.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 mdProductsOrder.setRowCount(0);
                 orderProducts.clear();
                 totalOrderLbl.setText("");

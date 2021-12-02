@@ -19,6 +19,7 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
+import excepciones.DBConexionExcepcion;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +43,7 @@ public class ReportPDF {
 
     Document document = new Document();
 
-    public void generatePDF(int idOrder) {
+    public void generatePDF(int idOrder) throws DBConexionExcepcion {
         try {
             String path = System.getProperty("user.home");
             List<String[]> orderProducts = controladorOrderProduct.selectProductsById(idOrder);

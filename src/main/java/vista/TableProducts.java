@@ -5,7 +5,10 @@
 package vista;
 
 import Controlador.ControladorProduct;
+import excepciones.DBConexionExcepcion;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +23,7 @@ public class TableProducts extends javax.swing.JFrame {
     /**
      * Creates new form TableProducts
      */
-    public TableProducts() {
+    public TableProducts() throws DBConexionExcepcion {
         initComponents();
         String data[][] = {};
         String columnsClientsTable[] = {"Código del producto", "Nombre", "Descripción", "Precio"};
@@ -197,7 +200,12 @@ public class TableProducts extends javax.swing.JFrame {
     private void backMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMenuBtnActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        VistaUser MenuPrin = new VistaUser();
+        VistaUser MenuPrin = null;
+        try {
+            MenuPrin = new VistaUser();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(TableProducts.class.getName()).log(Level.SEVERE, null, ex);
+        }
         MenuPrin.setLocationRelativeTo(null);
         MenuPrin.setVisible(true);
     }//GEN-LAST:event_backMenuBtnActionPerformed
@@ -211,7 +219,12 @@ public class TableProducts extends javax.swing.JFrame {
         if(name.length() == 0 && description.length() == 0 && price.length() == 0) {
             JOptionPane.showMessageDialog(null, "Complete todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            boolean created = controladorProduct.createProduct(name, description, Double.parseDouble(price));
+            boolean created = false;
+            try {
+                created = controladorProduct.createProduct(name, description, Double.parseDouble(price));
+            } catch (DBConexionExcepcion ex) {
+                Logger.getLogger(TableProducts.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
             if(created) {
                 JOptionPane.showMessageDialog(null, "Producto creado con exito");
@@ -219,7 +232,11 @@ public class TableProducts extends javax.swing.JFrame {
                 nameTf.setText("");
                 descriptionTa.setText("");
                 priceTf.setText("");
-                this.loadProductsTable();
+                try {
+                    this.loadProductsTable();
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(TableProducts.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "No se pudo crear el producto", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -264,7 +281,7 @@ public class TableProducts extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     
-    public void loadProductsTable() {
+    public void loadProductsTable() throws DBConexionExcepcion {
         mdProductTable.setRowCount(0); //de esta forma vaciamos la tabla
         List<String[]> products = controladorProduct.selectProducts();
         products.forEach(product -> {
@@ -301,7 +318,11 @@ public class TableProducts extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TableProducts().setVisible(true);
+                try {
+                    new TableProducts().setVisible(true);
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(TableProducts.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

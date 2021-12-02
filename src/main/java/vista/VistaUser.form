@@ -231,11 +231,6 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Camilo\Desktop\Empresa-XYZ-master (1)\Empresa-XYZ-master\src\main\java\images\cerrar-sesion 24px.png"/>
-                    </Property>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -292,11 +287,6 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Camilo\Desktop\Empresa-XYZ-master (1)\Empresa-XYZ-master\src\main\java\images\cliente 24px.png"/>
-                    </Property>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -353,11 +343,6 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel13">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Camilo\Desktop\Empresa-XYZ-master (1)\Empresa-XYZ-master\src\main\java\images\caja 24px.png"/>
-                    </Property>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -414,11 +399,6 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel14">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\Camilo\Desktop\Empresa-XYZ-master (1)\Empresa-XYZ-master\src\main\java\images\carrito-de-compras 24 px.png"/>
-                    </Property>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

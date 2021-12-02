@@ -6,6 +6,7 @@ package DAO;
 
 import static DAO.Conexion.close;
 import static DAO.Conexion.getConnection;
+import excepciones.DBConexionExcepcion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -28,7 +29,7 @@ public class OrderProductDAO {
     private static final String SQL_SELECT_ID = "Select * from orders_product where idOrder=?";
     private static final String SQL_JOIN = "Select * from product natural join orders_product natural join orders where idOrder=?";
 
-    public List<OrderProduct> seleccionar() {
+    public List<OrderProduct> seleccionar() throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -49,7 +50,7 @@ public class OrderProductDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Seleccionar La Orden Del Producto", ex);
         } finally {
             close(rs);
             close(stmt);
@@ -59,7 +60,7 @@ public class OrderProductDAO {
         return orderProducts;
     }
 
-    public boolean insertar(OrderProduct orderProduct) {
+    public boolean insertar(OrderProduct orderProduct) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -73,17 +74,15 @@ public class OrderProductDAO {
             return registros == 1;
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Insertar La Orden Del Producto", ex);
         } finally {
             close(stmt);
             close(conn);
 
         }
-
-        return false;
     }
     
-    public List<OrderProduct> selectOrderProductsById(int idOrd) {
+    public List<OrderProduct> selectOrderProductsById(int idOrd) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -108,7 +107,7 @@ public class OrderProductDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Seleccionar La Orden Del Producto", ex);
         } finally {
             close(rs);
             close(stmt);

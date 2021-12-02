@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import excepciones.DBConexionExcepcion;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,53 +26,52 @@ public class Conexion {
         this.conexion = null;
     }
     
-    public static Connection getConnection() {    
+    public static Connection getConnection() throws DBConexionExcepcion {    
         try {
             Class.forName("org.postgresql.Driver");
             return DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Conectar La Base de datos", ex);
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Clase No encontrada", ex);
         }
-        return null;
     }
     
-    public static void close(ResultSet rs) {
+    public static void close(ResultSet rs) throws DBConexionExcepcion {
         try {
             rs.close();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Cerrar La Base De Datos", ex);
         }
     }
     
-    public static void close(Statement smtm) {
+    public static void close(Statement smtm) throws DBConexionExcepcion {
         try {
             smtm.close();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Cerrar El Stament De La Base De Datos", ex);
         }
     }
     
-    public static void close(PreparedStatement smtm) {
+    public static void close(PreparedStatement smtm) throws DBConexionExcepcion {
         try {
             smtm.close();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Cerrar El PreparedStatement De La Base De Datos", ex);
         }
     }
     
-    public static void close(Connection conn) {
+    public static void close(Connection conn) throws DBConexionExcepcion {
         try {
             conn.close();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Cerrar El Connection De La Base De Datos", ex);
         }
     }
 }

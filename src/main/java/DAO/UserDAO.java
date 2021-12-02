@@ -9,6 +9,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static DAO.Conexion.*;
+import excepciones.DBConexionExcepcion;
 import modelo.User;
 
 /**
@@ -25,7 +26,7 @@ public class UserDAO {
 
     }
 
-    public boolean login(String username, String password) {
+    public boolean login(String username, String password) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -42,7 +43,7 @@ public class UserDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(UserDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Logear El Usuario", ex);
         } finally {
             close(rs);
             close(stmt);
@@ -51,7 +52,7 @@ public class UserDAO {
         return false;
     }
 
-    public boolean comprobarUserName(String username) {
+    public boolean comprobarUserName(String username) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -68,7 +69,7 @@ public class UserDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            
+            throw new DBConexionExcepcion("Error Al Comprobar El Nombre De Usuario", ex);
         } finally {
             close(rs);
             close(stmt);
@@ -78,7 +79,7 @@ public class UserDAO {
 
     }
 
-    public boolean registrarUsuario(User user) {
+    public boolean registrarUsuario(User user) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -95,6 +96,7 @@ public class UserDAO {
 
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
+            throw new DBConexionExcepcion("Error Al Registrar El Usuario", ex);
         } 
         finally {
             close(stmt);

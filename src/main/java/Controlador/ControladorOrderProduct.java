@@ -5,6 +5,7 @@
 package Controlador;
 
 import DAO.OrderProductDAO;
+import excepciones.DBConexionExcepcion;
 import java.util.*;
 import modelo.OrderProduct;
 
@@ -19,7 +20,7 @@ public class ControladorOrderProduct {
         orderProductDao = new OrderProductDAO();
     }
     
-    public List<String[]> selectOrderProduct() {
+    public List<String[]> selectOrderProduct() throws DBConexionExcepcion {
         List<OrderProduct> orders = orderProductDao.seleccionar();
         List<String[]> ordersReturn = new ArrayList<>();
         orders.forEach( orderProduct -> {
@@ -29,7 +30,7 @@ public class ControladorOrderProduct {
         return ordersReturn;
     }
     
-    public int createOrderProduct(ArrayList<OrderProduct> orderProducts) {
+    public int createOrderProduct(ArrayList<OrderProduct> orderProducts) throws DBConexionExcepcion {
         
         for(int i = 0; i<orderProducts.size(); i++){
             orderProductDao.insertar(orderProducts.get(i));
@@ -37,7 +38,7 @@ public class ControladorOrderProduct {
         return -1;
     }
     
-    public List<String[]> selectProductsById(int idOP) {
+    public List<String[]> selectProductsById(int idOP) throws DBConexionExcepcion {
         List<OrderProduct> products = orderProductDao.selectOrderProductsById(idOP);
         List<String[]> productsReturn = new ArrayList<>();
         products.forEach(product -> {

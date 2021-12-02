@@ -5,6 +5,7 @@
 package Controlador;
 
 import DAO.ClientDAO;
+import excepciones.DBConexionExcepcion;
 import excepciones.InvalidEmail;
 import excepciones.InvalidLastName;
 import excepciones.InvalidName;
@@ -49,7 +50,7 @@ public class ControladorClient {
             }
             
     }
-    public boolean eliminar (int idclient) {
+    public boolean eliminar (int idclient) throws DBConexionExcepcion {
     return clientDao.eliminar(idclient);
     
     }
@@ -78,7 +79,7 @@ public class ControladorClient {
      }
     
     
-    public List<String[]> selectClients() {
+    public List<String[]> selectClients() throws DBConexionExcepcion {
         List<Client> clients = clientDao.seleccionar();
         List<String[]> clientsReturn = new ArrayList<>();
         clients.forEach( client -> {
@@ -88,7 +89,7 @@ public class ControladorClient {
         return clientsReturn;
     }
     
-    public Client selectClientById(int idCli) {
+    public Client selectClientById(int idCli) throws DBConexionExcepcion {
         return clientDao.selectClientById(idCli);
     }
     

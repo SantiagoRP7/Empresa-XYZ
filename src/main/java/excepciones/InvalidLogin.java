@@ -3,16 +3,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package excepciones;
+
 import org.apache.log4j.Logger;
+
 /**
  *
- * @author ADMIN
+ * @author usuario
  */
-public class InvalidEmail extends Exception{
-    private static final Logger LogJava = Logger.getLogger(DiferentPasswords.class);
-    public InvalidEmail(String message) {
+public class InvalidLogin extends Exception{
+    private static final Logger LogJava = Logger.getLogger(DBConexionExcepcion.class);
+    public InvalidLogin(String message) {
         super(message);
         LogJava.warn(message);
     }
-    
 }

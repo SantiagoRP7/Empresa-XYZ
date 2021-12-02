@@ -7,7 +7,10 @@ package vista;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import Controlador.ControladorOrder;
+import excepciones.DBConexionExcepcion;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,7 +25,7 @@ public class TableOrders extends javax.swing.JFrame {
     /**
      * Creates new form TableOrders
      */
-    public TableOrders() {
+    public TableOrders() throws DBConexionExcepcion {
         initComponents();
         controladorOrder = new ControladorOrder();
         String data[][] = {};
@@ -140,13 +143,22 @@ public class TableOrders extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loadOrdersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadOrdersBtnActionPerformed
-        // TODO add your handling code here:
-        loadOrders();
+        try {
+            // TODO add your handling code here:
+            loadOrders();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(TableOrders.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_loadOrdersBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.setVisible(false);
-        VistaUser MenuPrin = new VistaUser();
+        VistaUser MenuPrin = null;
+        try {
+            MenuPrin = new VistaUser();
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(TableOrders.class.getName()).log(Level.SEVERE, null, ex);
+        }
         MenuPrin.setLocationRelativeTo(null);
         MenuPrin.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
@@ -169,11 +181,13 @@ public class TableOrders extends javax.swing.JFrame {
             tableOrderProduct.setVisible(true);
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar un pedido de la tabla", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(TableOrders.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_consultProductOrderBtnActionPerformed
 
-    private void loadOrders() {
+    private void loadOrders() throws DBConexionExcepcion {
         mdOrdersTable.setRowCount(0);
         List<String[]> orders = controladorOrder.selectOrders();
         orders.forEach(order -> mdOrdersTable.addRow(order));
@@ -209,7 +223,11 @@ public class TableOrders extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TableOrders().setVisible(true);
+                try {
+                    new TableOrders().setVisible(true);
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(TableOrders.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

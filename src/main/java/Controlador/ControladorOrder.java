@@ -5,6 +5,7 @@
 package Controlador;
 
 import DAO.OrderDAO;
+import excepciones.DBConexionExcepcion;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -22,7 +23,7 @@ public class ControladorOrder {
         orderDao = new OrderDAO();
     }
     
-    public List<String[]> selectOrders() {
+    public List<String[]> selectOrders() throws DBConexionExcepcion {
         List<Order> orders = orderDao.seleccionar();
         List<String[]> ordersReturn = new ArrayList<>();
         orders.forEach( order -> {
@@ -32,18 +33,18 @@ public class ControladorOrder {
         return ordersReturn;
     }
     
-    public boolean createOrder(int idClient, int idOrder) {
+    public boolean createOrder(int idClient, int idOrder) throws DBConexionExcepcion {
         LocalDate todayLocalDate = LocalDate.now( ZoneId.of( "America/Montreal" ) );
         java.sql.Date sqlDate = java.sql.Date.valueOf( todayLocalDate );
         Order order = new Order(idOrder, sqlDate, new Client(idClient));
         return orderDao.insertar(order);
     }
     
-    public int getLastOrderId() {
+    public int getLastOrderId() throws DBConexionExcepcion {
         return orderDao.lastOrderId();
     }
     
-    public Order selectOrderById(int id){
+    public Order selectOrderById(int id) throws DBConexionExcepcion{
         return orderDao.selectOrderById(id);
     }
 }

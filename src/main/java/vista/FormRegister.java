@@ -8,7 +8,13 @@ package vista;
 import javax.swing.JOptionPane;
 import Controlador.ControladorEncode;
 import Controlador.ControladorUser;
+import excepciones.DBConexionExcepcion;
+import excepciones.DiferentPasswords;
+import excepciones.InvalidLastName;
+import excepciones.InvalidName;
 import excepciones.RegexStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.User;
 
 /**
@@ -200,48 +206,66 @@ public class FormRegister extends javax.swing.JFrame {
         String contrasena = contrasenaTextField.getText();
         String contrasenaConfirmar = confirmarContrasenaTextField.getText();
         if (contrasena.equals(contrasenaConfirmar)) {
-            
+
             String usuario = usuarioTextField.getText();
             if (usuario.matches(RegexStatement.RegexUserName)) {
-                if (controlUser.usuarioExistente(usuario)) {
-                    JOptionPane.showMessageDialog(null, "el nombre de usuario ya está registrado, por favor seleccione otro");
-                } else {
-                    String nombre = nombreTextField.getText();
-                    if (nombre.matches(RegexStatement.RegexName)) {
-                        String apellido = apellidoTextField.getText();
-                        if (apellido.matches(RegexStatement.RegexName)) {
-                            String contrasenaCodificada = codificar.codificar(contrasena);
-                            String telefono = telefonoTextField.getText();
-                            User user = new User(usuario, nombre, apellido, contrasenaCodificada, telefono);
-                            controlUser.registrarUsuario(user);
-                            JOptionPane.showMessageDialog(null, "Registro realizado con éxito!.");
-                        }else{
-                            JOptionPane.showMessageDialog(null, "Formato de apellido no válido");
+                try {
+                    if (controlUser.usuarioExistente(usuario)) {
+                        JOptionPane.showMessageDialog(null, "el nombre de usuario ya está registrado, por favor seleccione otro");
+                    } else {
+                        String nombre = nombreTextField.getText();
+                        if (nombre.matches(RegexStatement.RegexName)) {
+                            String apellido = apellidoTextField.getText();
+                            if (apellido.matches(RegexStatement.RegexName)) {
+                                String contrasenaCodificada = codificar.codificar(contrasena);
+                                String telefono = telefonoTextField.getText();
+                                User user = new User(usuario, nombre, apellido, contrasenaCodificada, telefono);
+                                controlUser.registrarUsuario(user);
+                                JOptionPane.showMessageDialog(null, "Registro realizado con éxito!.");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Formato de apellido no válido");
+                                throw new InvalidLastName("Apellido Invalido");
+                            }
+                            
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Formato de nombre no válido");
+                            throw new InvalidName("Nombre Invalido");
                         }
 
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Formato de nombre no válido");
                     }
-
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(FormRegister.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InvalidLastName ex) {
+                    Logger.getLogger(FormRegister.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InvalidName ex) {
+                    Logger.getLogger(FormRegister.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
 
                 String nombre = nombreTextField.getText();
                 String apellido = apellidoTextField.getText();
                 String contrasenaCodificada = codificar.codificar(contrasena);
-                String telefono= telefonoTextField.getText();
+                String telefono = telefonoTextField.getText();
                 User user = new User(usuario, nombre, apellido, contrasenaCodificada, telefono);
-                controlUser.registrarUsuario(user);
+                try {
+                    controlUser.registrarUsuario(user);
+                } catch (DBConexionExcepcion ex) {
+                    Logger.getLogger(FormRegister.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 JOptionPane.showMessageDialog(null, "Registro realizado con éxito!.");
                 this.setVisible(false);
                 FormLogin menuLogin = new FormLogin();
                 menuLogin.setVisible(true);
-               
 
             }
 
         } else {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
+            try {
+                throw new DiferentPasswords("Las contraseñas no coincide");
+            } catch (DiferentPasswords ex) {
+                Logger.getLogger(FormRegister.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         setVisible(false);
         FormLogin login = new FormLogin();

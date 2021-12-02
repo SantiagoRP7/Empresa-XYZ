@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.*;
 import modelo.*;
 import static DAO.Conexion.*;
+import excepciones.DBConexionExcepcion;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Date;
@@ -27,7 +28,7 @@ public class OrderDAO {
     public OrderDAO() {
     }
 
-    public List<Order> seleccionar() {
+    public List<Order> seleccionar() throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -51,7 +52,7 @@ public class OrderDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Seleccionar La Orden De La Base De Datos", ex);
         } finally {
             close(rs);
             close(stmt);
@@ -61,7 +62,7 @@ public class OrderDAO {
         return orders;
     }
 
-    public boolean insertar(Order order) {
+    public boolean insertar(Order order) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -75,17 +76,15 @@ public class OrderDAO {
             return registros == 1;
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(OrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Insertar La Orden De La Base De Datos", ex);
         } finally {
             close(stmt);
             close(conn);
 
         }
-
-        return false;
     }
 
-    public int lastOrderId() {
+    public int lastOrderId() throws DBConexionExcepcion {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -101,7 +100,7 @@ public class OrderDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ClientDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Obtener La Ultima Orden De La Base De Datos", ex);
         } finally {
             close(rs);
             close(stmt);
@@ -111,7 +110,7 @@ public class OrderDAO {
         return lastOrderId+1;
     }
     
-    public Order selectOrderById(int idCli) {
+    public Order selectOrderById(int idCli) throws DBConexionExcepcion {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -132,7 +131,7 @@ public class OrderDAO {
             }
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
-            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            throw new DBConexionExcepcion("Error Al Seleccionar La Orden De La Base De Datos", ex);
         } finally {
             close(rs);
             close(stmt);

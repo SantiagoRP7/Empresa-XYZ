@@ -6,7 +6,10 @@ package vista;
 
 import Controlador.ControladorOrderProduct;
 import Controlador.ControladorOrder;
+import excepciones.DBConexionExcepcion;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import modelo.Order;
 import reports.ReportPDF;
@@ -24,7 +27,7 @@ public class TableOrderProduct extends javax.swing.JFrame {
     /**
      * Creates new form TableOrderProduct
      */
-    public TableOrderProduct(int idOrder) {
+    public TableOrderProduct(int idOrder) throws DBConexionExcepcion {
         initComponents();
         controladorOrderProduct = new ControladorOrderProduct();
         controladorOrder = new ControladorOrder();
@@ -181,7 +184,11 @@ public class TableOrderProduct extends javax.swing.JFrame {
         // TODO add your handling code here:
         int idOrder = Integer.parseInt(idOrdenLbl.getText());
         ReportPDF report = new ReportPDF();
-        report.generatePDF(idOrder);
+        try {
+            report.generatePDF(idOrder);
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(TableOrderProduct.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_printOrderBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -189,7 +196,7 @@ public class TableOrderProduct extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void loadOrderProductsTable(int idOrder) {
+    private void loadOrderProductsTable(int idOrder) throws DBConexionExcepcion {
         mdOderProductTable.setRowCount(0); //de esta forma vaciamos la tabla
         List<String[]> orderProducts = controladorOrderProduct.selectProductsById(idOrder);
         orderProducts.forEach(orderProduct -> {
@@ -198,7 +205,7 @@ public class TableOrderProduct extends javax.swing.JFrame {
         totalPriceOrder();
     }
 
-    private void setLabels(int idOrder) {
+    private void setLabels(int idOrder) throws DBConexionExcepcion {
         Order order = controladorOrder.selectOrderById(idOrder);
         idOrdenLbl.setText(String.valueOf(order.getIdOrder()));
         dateOrderLbl.setText(String.valueOf(order.getDateOrder()));

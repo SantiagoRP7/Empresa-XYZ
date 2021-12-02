@@ -6,6 +6,10 @@ package vista;
 
 import Controlador.ControladorEncode;
 import Controlador.ControladorUser;
+import excepciones.DBConexionExcepcion;
+import excepciones.InvalidLogin;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -170,16 +174,31 @@ public class FormLogin extends javax.swing.JFrame {
         String username = usernameTf.getText();
         ControladorEncode codificador= new ControladorEncode();
         String password = codificador.codificar(passwordTf.getText());
-        boolean login = controladorUser.login(username, password);
+        boolean login = false;
+        try {
+            login = controladorUser.login(username, password);
+        } catch (DBConexionExcepcion ex) {
+            Logger.getLogger(FormLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (username.length() == 0 || password.length() == 0){
             JOptionPane.showMessageDialog(null, "Ingrese el usuario y la contraseña", "Error", JOptionPane.ERROR_MESSAGE);
         } else if (login) {
             this.dispose();
-            VistaUser vu = new VistaUser();
+            VistaUser vu = null;
+            try {
+                vu = new VistaUser();
+            } catch (DBConexionExcepcion ex) {
+                Logger.getLogger(FormLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
             vu.setLocationRelativeTo(null);
             vu.setVisible(true);
         } else {
+            try {
+                throw new InvalidLogin("Error En El Login");
+            } catch (InvalidLogin ex) {
+                Logger.getLogger(FormLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
             JOptionPane.showMessageDialog(null, "Error en el login", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
