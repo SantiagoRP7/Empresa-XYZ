@@ -50,11 +50,19 @@ public class TableOrders extends javax.swing.JFrame {
         createOrderBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         consultProductOrderBtn = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("Tabla de pedidos");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 128, 244));
+        jLabel1.setText("Lista de Pedidos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, 190, -1));
 
         tableOrders.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -66,92 +74,67 @@ public class TableOrders extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableOrders);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 92, 510, 300));
+
+        loadOrdersBtn.setBackground(new java.awt.Color(153, 102, 255));
+        loadOrdersBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        loadOrdersBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\refresh.png")); // NOI18N
         loadOrdersBtn.setText("Cargar");
         loadOrdersBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loadOrdersBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(loadOrdersBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 130, 130, -1));
 
+        createOrderBtn.setBackground(new java.awt.Color(51, 153, 255));
+        createOrderBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        createOrderBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\agregar-paquete.png")); // NOI18N
         createOrderBtn.setText("Crear");
         createOrderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createOrderBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(createOrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 130, -1));
 
-        backBtn.setText("Atras");
+        backBtn.setBackground(new java.awt.Color(67, 35, 248));
+        backBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\atras 16px.png")); // NOI18N
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        consultProductOrderBtn.setBackground(new java.awt.Color(153, 255, 153));
+        consultProductOrderBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        consultProductOrderBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\buscar 24px.png")); // NOI18N
         consultProductOrderBtn.setText("Consultar");
         consultProductOrderBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultProductOrderBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(consultProductOrderBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, 130, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(backBtn)
-                        .addGap(176, 176, 176)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(loadOrdersBtn)
-                        .addGap(82, 82, 82)
-                        .addComponent(createOrderBtn)
-                        .addGap(81, 81, 81)
-                        .addComponent(consultProductOrderBtn)))
-                .addContainerGap(66, Short.MAX_VALUE))
+        jPanel2.setBackground(new java.awt.Color(0, 128, 244));
+        jPanel2.setForeground(new java.awt.Color(0, 128, 244));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(backBtn)
-                        .addGap(42, 42, 42))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(30, 30, 30)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(loadOrdersBtn)
-                    .addComponent(createOrderBtn)
-                    .addComponent(consultProductOrderBtn))
-                .addContainerGap(35, Short.MAX_VALUE))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 680, 30));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -1, 680, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -162,8 +145,10 @@ public class TableOrders extends javax.swing.JFrame {
     }//GEN-LAST:event_loadOrdersBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+        this.setVisible(false);
+        VistaUser MenuPrin = new VistaUser();
+        MenuPrin.setLocationRelativeTo(null);
+        MenuPrin.setVisible(true);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void createOrderBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createOrderBtnActionPerformed
@@ -235,6 +220,7 @@ public class TableOrders extends javax.swing.JFrame {
     private javax.swing.JButton createOrderBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loadOrdersBtn;
     private javax.swing.JTable tableOrders;

@@ -25,7 +25,7 @@ public class TableClients extends javax.swing.JFrame {
         initComponents();
         controladorClient = new ControladorClient();
         String data[][] = {};
-        String columnsClientsTable[] = {"Id cliente", "Nombres", "Apellidos", "Correo electronico", "Telefono"};
+        String columnsClientsTable[] = {"Código del cliente", "Nombres", "Apellidos", "Correo electronico", "Telefono"};
         mdClientsTable = new DefaultTableModel(data, columnsClientsTable);
         clientsTable.setModel(mdClientsTable);
         clientsTable.setDefaultEditor(Object.class, null);
@@ -41,29 +41,34 @@ public class TableClients extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         clientsTable = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
         backMenuBtn = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        createClientBtn = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtidCliente = new javax.swing.JTextField();
         firstNameTf = new javax.swing.JTextField();
         lastNameTf = new javax.swing.JTextField();
         emailTf = new javax.swing.JTextField();
         phoneTf = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnModificar = new javax.swing.JButton();
-        btnConsultar = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
-        txtidCliente = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        createClientBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 18)); // NOI18N
-        jLabel1.setText("Lista de Clientes");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         clientsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,150 +80,146 @@ public class TableClients extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(clientsTable);
 
-        backMenuBtn.setText("Atrás");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 82, 360, 260));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        backMenuBtn.setBackground(new java.awt.Color(67, 35, 248));
+        backMenuBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        backMenuBtn.setForeground(new java.awt.Color(255, 255, 255));
+        backMenuBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\atras 16px.png")); // NOI18N
         backMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backMenuBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(backMenuBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
-        jLabel4.setText("Telefono:");
+        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 128, 244));
+        jLabel1.setText("Lista de Clientes");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, -1));
 
-        jLabel2.setText("Nombres:");
+        jPanel2.setBackground(new java.awt.Color(0, 128, 244));
+        jPanel2.setForeground(new java.awt.Color(0, 128, 244));
 
-        jLabel3.setText("Apellidos:");
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
-        jLabel6.setText("Email:");
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 640, 30));
 
-        btnModificar.setText("Modificar");
-        btnModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModificarActionPerformed(evt);
-            }
-        });
-
-        btnConsultar.setText("Consultar");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
-
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
-            }
-        });
-
-        txtidCliente.setEditable(false);
-
-        jLabel7.setText("Id Cliente");
-
+        createClientBtn.setBackground(new java.awt.Color(51, 153, 255));
+        createClientBtn.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        createClientBtn.setForeground(new java.awt.Color(255, 255, 255));
+        createClientBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\agregar-usuario 24px.png")); // NOI18N
         createClientBtn.setText("Crear");
         createClientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createClientBtnActionPerformed(evt);
             }
         });
+        jPanel1.add(createClientBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 100, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(backMenuBtn)
-                .addGap(246, 246, 246)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(createClientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)
-                        .addComponent(btnModificar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(btnConsultar)
-                        .addGap(70, 70, 70)
-                        .addComponent(btnEliminar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtidCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(151, 151, 151)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(emailTf, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                                        .addComponent(lastNameTf)
-                                        .addComponent(phoneTf))
-                                    .addComponent(firstNameTf, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(70, 70, 70))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtidCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(firstNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(lastNameTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(emailTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(phoneTf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(backMenuBtn)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnModificar)
-                    .addComponent(btnConsultar)
-                    .addComponent(btnEliminar)
-                    .addComponent(createClientBtn))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
+        btnModificar.setBackground(new java.awt.Color(102, 102, 255));
+        btnModificar.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        btnModificar.setForeground(new java.awt.Color(255, 255, 255));
+        btnModificar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\actualizar 24px.png")); // NOI18N
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, -1));
+
+        btnConsultar.setBackground(new java.awt.Color(153, 255, 153));
+        btnConsultar.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        btnConsultar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConsultar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\buscar 24px.png")); // NOI18N
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnConsultar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, -1, -1));
+
+        btnEliminar.setBackground(new java.awt.Color(255, 0, 0));
+        btnEliminar.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setIcon(new javax.swing.ImageIcon("C:\\Users\\Camilo\\Documents\\Empresa-XYZ - ultimos cambios\\src\\main\\java\\imgs\\eliminar 24px.png")); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel7.setText("Código del cliente:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel2.setText("Nombres:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, -1, -1));
+
+        txtidCliente.setEditable(false);
+        txtidCliente.setBorder(null);
+        jPanel1.add(txtidCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 141, 20));
+
+        firstNameTf.setBorder(null);
+        jPanel1.add(firstNameTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 141, -1));
+
+        lastNameTf.setBorder(null);
+        lastNameTf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lastNameTfActionPerformed(evt);
+            }
+        });
+        jPanel1.add(lastNameTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 141, -1));
+
+        emailTf.setBorder(null);
+        jPanel1.add(emailTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, 141, -1));
+
+        phoneTf.setBorder(null);
+        jPanel1.add(phoneTf, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, 141, -1));
+
+        jLabel3.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel3.setText("Apellidos:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel6.setText("Email:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        jLabel4.setText("Telefono:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 260, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, 140, 10));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 140, 10));
+        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 140, 10));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 140, 10));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 240, 140, 10));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 440));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void backMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMenuBtnActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        this.setVisible(false);
+        
     }//GEN-LAST:event_backMenuBtnActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
@@ -234,9 +235,9 @@ public class TableClients extends javax.swing.JFrame {
             lastNameTf.setText("");
             emailTf.setText("");
             phoneTf.setText("");
-            JOptionPane.showMessageDialog(null, "El producto se modificó", "Exito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El cliente se modificó", "Exito", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error modificar" + e, "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -270,7 +271,7 @@ public class TableClients extends javax.swing.JFrame {
             phoneTf.setText("");
             loadClientsTable();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Debe consultar un cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -299,6 +300,10 @@ public class TableClients extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_createClientBtnActionPerformed
+
+    private void lastNameTfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lastNameTfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,7 +364,14 @@ public class TableClients extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField lastNameTf;
     private javax.swing.JTextField phoneTf;
     private javax.swing.JTextField txtidCliente;
