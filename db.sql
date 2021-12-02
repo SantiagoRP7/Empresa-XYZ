@@ -14,10 +14,7 @@ CREATE TABLE users(
 );
 
 
-INSERT INTO users(username,firstName,lastName,password,telefono)
- VALUES 
- ('camilo.sanchez', 'Camilo', 'Sanchez', '123456', '315879635'),
- ('josue.rodriguez', 'Josue', 'Rodriguez', '123456', '3165948575');
+
 
 
  CREATE TABLE client(
@@ -28,6 +25,11 @@ INSERT INTO users(username,firstName,lastName,password,telefono)
     phone varchar(12)
 );
 
+INSERT INTO users(username,firstName,lastName,password,telefono)
+ VALUES 
+ ('camilo.sanchez', 'Camilo', 'Sanchez', md5('123456'), '315879635'),
+ ('josue.rodriguez', 'Josue', 'Rodriguez', md5('123456'), '3165948575');
+ 
 INSERT INTO client(idClient,firstName,lastName,email,phone)
     VALUES 
     (0, 'default', 'default','default','default');
