@@ -5,6 +5,8 @@
 package Controlador;
 
 import DAO.ClientDAO;
+import excepciones.InvalidName;
+import excepciones.RegexStatement;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Client;
@@ -21,8 +23,17 @@ public class ControladorClient {
     }
     
     public boolean createClient(String firstName, String lastName, String email, String phone) {
-        Client client = new Client(firstName, lastName, email, phone);
-        return clientDao.insertar(client);
+        try {
+            if (firstName.matches(RegexStatement.RegexName)) {
+                Client client = new Client(firstName, lastName, email, phone);
+                return clientDao.insertar(client);   
+            }else{
+                throw new InvalidName("Verificar que el nombre este bien escrito y no contenga caracteres especiales");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
     public boolean eliminar (int idclient) {
     return clientDao.eliminar(idclient);
